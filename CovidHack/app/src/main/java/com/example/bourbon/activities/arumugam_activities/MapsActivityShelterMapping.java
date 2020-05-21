@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -24,7 +25,10 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
@@ -38,6 +42,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,14 +55,16 @@ import java.util.HashMap;
 import print.Print;
 
 public class MapsActivityShelterMapping extends FragmentActivity implements OnMapReadyCallback,
-        View.OnClickListener,
-        GoogleMap.OnMyLocationChangeListener{
+        View.OnClickListener{
 
     private GoogleMap mMap;
     private DatabaseReference databaseReference;
     private Print print;
     private Button search;
     private Spinner sp;
+    private FusedLocationProviderClient flpc;
+    private LocationCallback locationCallback;
+    private LocationRequest locationRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +83,29 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,options);
         sp.setAdapter(adapter);
 
+        flpc = LocationServices.getFusedLocationProviderClient(this);
 
+        locationRequest = new LocationRequest();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(1000);
+
+
+        locationCallback = new LocationCallback(){
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+
+                if(locationResult==null) return;
+
+                Location location = locationResult.getLastLocation();
+
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),15.0f));
+                search = (Button) findViewById(R.id.plot);
+                search.setOnClickListener(MapsActivityShelterMapping.this::onClick);
+                Log.d("Arumugam","first location got button enabled.");
+                flpc.removeLocationUpdates(this);
+            }
+        };
     }
 
 
@@ -252,7 +281,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
         else{
             checkLocation();
             mMap.setMyLocationEnabled(true);
-            mMap.setOnMyLocationChangeListener(this);
+            flpc.requestLocationUpdates(locationRequest,locationCallback, Looper.getMainLooper());
         }
 
         if(!checkPlayServices())
@@ -274,7 +303,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
                     // contacts-related task you need to do.
                     checkLocation();
                     mMap.setMyLocationEnabled(true);
-                    mMap.setOnMyLocationChangeListener(this);
+                    flpc.requestLocationUpdates(locationRequest,locationCallback, Looper.getMainLooper());
                 } else {
                     print.fprintf("Cannot locate shelters without location services");
                     //Toast.makeText(this,"Cannot provide the location services",Toast.LENGTH_SHORT).show();
@@ -306,29 +335,20 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
 
     @Override
     public void onClick(View v) {
-            Location location = mMap.getMyLocation();
-
-            if(location!=null)
-            {
-                int dis = Integer.parseInt(sp.getSelectedItem().toString().split(" ")[0]);
-                fetchShelters(location,dis);
-                Log.d("Arumugam","fetch called with "+location.getLatitude()+","+location.getLongitude());
-            }
-            else
-            {
-                print.fprintf("Failed to get your location. Please enable GPS if it is disabled.");
-            }
-    }
-
-    @Override
-    public void onMyLocationChange(Location location) {
-        if(location!=null)
-        {
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),15.0f));
-            search = (Button) findViewById(R.id.plot);
-            search.setOnClickListener(this);
-            mMap.setOnMyLocationChangeListener(null);
-            Log.d("Arumugam","first location got button enabled.");
-        }
+            flpc.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                        if(location!=null)
+                        {
+                            int dis = Integer.parseInt(sp.getSelectedItem().toString().split(" ")[0]);
+                            fetchShelters(location,dis);
+                            Log.d("Arumugam","fetch called with "+location.getLatitude()+","+location.getLongitude());
+                        }
+                        else
+                        {
+                            print.fprintf("Failed to get your location. Please enable GPS if it is disabled.");
+                        }
+                }
+            });
     }
 }
