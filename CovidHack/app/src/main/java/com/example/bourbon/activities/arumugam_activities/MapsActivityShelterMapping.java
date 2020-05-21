@@ -75,6 +75,12 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
                 .findFragmentById(R.id.map_shelter_mapping);
         mapFragment.getMapAsync(this);
 
+        // Testing purpose
+
+        LabApiQuery.ping(getApplicationContext());
+
+        //Test done
+
         print = new Print(this);
 
         sp = (Spinner) findViewById(R.id.distance);

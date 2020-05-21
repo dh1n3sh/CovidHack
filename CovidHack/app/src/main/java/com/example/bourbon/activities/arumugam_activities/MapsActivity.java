@@ -391,7 +391,7 @@ public class MapsActivity extends FragmentActivity
             getPlaces("pharmacy");
         }
     }
-    
+
     private void checkLocation()
     {
         LocationManager locationManager = (LocationManager)getSystemService(LOCATION_SERVICE);
