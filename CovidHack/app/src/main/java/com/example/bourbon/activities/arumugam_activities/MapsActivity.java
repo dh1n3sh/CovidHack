@@ -1,39 +1,33 @@
 package com.example.bourbon.activities.arumugam_activities;
 
-import androidx.annotation.NonNull;
+import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.IntentSender;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
+import android.widget.Spinner;
+import android.widget.TextView;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import android.Manifest;
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.content.IntentSender;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RatingBar;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.bourbon.R;
-import com.example.bourbon.activities.clement_activities.EmergencyContactInfo;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
@@ -44,13 +38,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
@@ -367,10 +357,11 @@ public class MapsActivity extends FragmentActivity
             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 15.0f);
             mMap.animateCamera(cameraUpdate);
-            pharmacy.setTextColor(getApplication().getResources().getColor(R.color.black));
-            pharmacy.setBackground( getApplication().getResources().getDrawable(R.drawable.rounded_button_unselected));
-            hospital.setTextColor(getApplication().getResources().getColor(R.color.black));
-            hospital.setBackground( getApplication().getResources().getDrawable(R.drawable.rounded_button_unselected));
+            pharmacy.setTextColor(Color.BLACK);
+            pharmacy.setBackgroundResource(R.drawable.rounded_button_unselected);
+
+            hospital.setTextColor(Color.RED);
+            hospital.setBackgroundResource(R.drawable.rounded_button_unselected);
             mMap.setOnMyLocationChangeListener(null);
         }
     }
@@ -424,23 +415,14 @@ public class MapsActivity extends FragmentActivity
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
-        switch (requestCode) {
-            case LocationRequest.PRIORITY_HIGH_ACCURACY:
-                switch (resultCode) {
-                    case Activity.RESULT_OK:
-                        // All required changes were successfully made
-                        print.sprintf("GPS enabled");
-                        Log.i("activityresult", "onActivityResult: GPS Enabled by user");
-                        break;
-                    case Activity.RESULT_CANCELED:
-                        // The user was asked to change settings, but chose not to
-                        print.fprintf("Cannot find hospitals/pharmacies without GPS");
-                        Log.i("activityresult", "onActivityResult: User rejected GPS request");
-                        break;
-                    default:
-                        break;
-                }
-                break;
+        if (requestCode == LocationRequest.PRIORITY_HIGH_ACCURACY) {
+            if (resultCode == Activity.RESULT_OK) {// All required changes were successfully made
+                print.sprintf("GPS enabled");
+                Log.i("activityresult", "onActivityResult: GPS Enabled by user");
+            } else if (resultCode == Activity.RESULT_CANCELED) {// The user was asked to change settings, but chose not to
+                print.fprintf("Cannot find hospitals/pharmacies without GPS");
+                Log.i("activityresult", "onActivityResult: User rejected GPS request");
+            }
         }
     }
 }
