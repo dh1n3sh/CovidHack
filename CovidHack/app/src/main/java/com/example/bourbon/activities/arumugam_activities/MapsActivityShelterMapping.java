@@ -123,6 +123,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
 
     private void plotMarkers(HashMap<String,String> dict,Location location,int dis)
     {
+        Log.d("Arumugam","entered plot markers");
         mMap.clear();
         LatLngBounds.Builder latlngbuilder = new LatLngBounds.Builder();
 
@@ -157,6 +158,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
             }
         }
 
+        Log.d("Arumugam","Count : "+cnt);
         print.sprintf("got "+cnt+" shelters in the radius of "+dis);
         LatLngBounds latLngBounds = latlngbuilder.build();
         mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds,200));
@@ -221,7 +223,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
                         break;
                     case Activity.RESULT_CANCELED:
                         // The user was asked to change settings, but chose not to
-                        print.fprintf("Cannot location shelters without GPS");
+                        print.fprintf("Cannot locate shelters without GPS");
                         Log.i("activityresult", "onActivityResult: User rejected GPS request");
                         break;
                     default:
@@ -310,6 +312,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
             {
                 int dis = Integer.parseInt(sp.getSelectedItem().toString().split(" ")[0]);
                 fetchShelters(location,dis);
+                Log.d("Arumugam","fetch called with "+location.getLatitude()+","+location.getLongitude());
             }
             else
             {
@@ -325,6 +328,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
             search = (Button) findViewById(R.id.plot);
             search.setOnClickListener(this);
             mMap.setOnMyLocationChangeListener(null);
+            Log.d("Arumugam","first location got button enabled.");
         }
     }
 }
