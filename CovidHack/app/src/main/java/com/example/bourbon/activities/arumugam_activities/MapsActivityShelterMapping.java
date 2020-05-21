@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -18,7 +19,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bourbon.R;
 import com.google.android.gms.common.ConnectionResult;
@@ -39,11 +43,14 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,8 +61,8 @@ import java.util.HashMap;
 
 import print.Print;
 
-public class MapsActivityShelterMapping extends FragmentActivity implements OnMapReadyCallback,
-        View.OnClickListener{
+public class MapsActivityShelterMapping extends FragmentActivity implements OnMapReadyCallback
+{
 
     private GoogleMap mMap;
     private DatabaseReference databaseReference;
@@ -65,7 +72,10 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
     private FusedLocationProviderClient flpc;
     private LocationCallback locationCallback;
     private LocationRequest locationRequest;
-
+    public int seekValue;
+    private TextView helpMsg ;
+    private Circle mCircle;
+    private BottomSheetBehavior bottomSheetBehavior;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,23 +88,28 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
         // Testing purpose
 
         LabApiQuery.ping(getApplicationContext());
+        View bottomSheet = findViewById(R.id.bottom_sheet_shelter);
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
         //Test done
 
         print = new Print(this);
-
-        sp = (Spinner) findViewById(R.id.distance);
-
-        String[] options = new String[] { "5 Kilometers","10 Kilometers","50 Kilometers","100 Kilometers"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,options);
-        sp.setAdapter(adapter);
+        helpMsg = findViewById(R.id.shelter_help);
+//        sp = (Spinner) findViewById(R.id.distance);
+//
+//        String[] options = new String[] { "5 Kilometers","10 Kilometers","50 Kilometers","100 Kilometers"};
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,options);
+//        sp.setAdapter(adapter);
 
         flpc = LocationServices.getFusedLocationProviderClient(this);
 
         locationRequest = new LocationRequest();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(1000);
-
+        int step = 1;
+        int max = 200;
+        int min = 0;
+        seekValue = 50;
 
         locationCallback = new LocationCallback(){
             @Override
@@ -106,12 +121,57 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
                 Location location = locationResult.getLastLocation();
 
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),15.0f));
-                search = (Button) findViewById(R.id.plot);
-                search.setOnClickListener(MapsActivityShelterMapping.this::onClick);
+//                search = (Button) findViewById(R.id.plot);
+//                search.setOnClickListener(MapsActivityShelterMapping.this::onClick);
+                addCircle(new LatLng(location.getLatitude(),location.getLongitude()),seekValue*1000);
                 Log.d("Arumugam","first location got button enabled.");
                 flpc.removeLocationUpdates(this);
             }
         };
+
+
+        SeekBar seekbar = findViewById(R.id.seekBar);
+        seekbar.setMax( (max - min) / step );
+
+
+        seekbar.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener()
+                {
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+//                        Toast.makeText(MapsActivityShelterMapping.this, ""+seekValue, Toast.LENGTH_SHORT).show();
+                        flpc.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+                            @Override
+                            public void onSuccess(Location location) {
+                                if(location!=null)
+                                {
+                                    int dis = seekValue;
+                                    fetchShelters(location,dis);
+                                    Log.d("Arumugam","fetch called with "+location.getLatitude()+","+location.getLongitude());
+                                }
+                                else
+                                {
+                                    print.fprintf("Failed to get your location. Please enable GPS if it is disabled.");
+                                }
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {}
+
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress,
+                                                  boolean fromUser)
+                    {
+
+                        seekValue = min + (progress * step);
+                        helpMsg.setText("Selected distance : "+seekValue+" km");
+                        mCircle.setRadius(seekValue*1000);
+                    }
+                }
+        );
     }
 
 
@@ -339,22 +399,32 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
         return true;
     }
 
-    @Override
-    public void onClick(View v) {
-            flpc.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                        if(location!=null)
-                        {
-                            int dis = Integer.parseInt(sp.getSelectedItem().toString().split(" ")[0]);
-                            fetchShelters(location,dis);
-                            Log.d("Arumugam","fetch called with "+location.getLatitude()+","+location.getLongitude());
-                        }
-                        else
-                        {
-                            print.fprintf("Failed to get your location. Please enable GPS if it is disabled.");
-                        }
-                }
-            });
+    private void addCircle(LatLng latLng, float radius) {
+        CircleOptions circleOptions = new CircleOptions();
+        circleOptions.center(latLng);
+        circleOptions.radius(radius);
+        circleOptions.strokeColor(Color.argb(255, 255, 0,0));
+        circleOptions.fillColor(Color.argb(64, 255, 0,0));
+        circleOptions.strokeWidth(4);
+        mCircle = mMap.addCircle(circleOptions);
     }
+
+//    @Override
+//    public void onClick(View v) {
+//            flpc.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+//                @Override
+//                public void onSuccess(Location location) {
+//                        if(location!=null)
+//                        {
+//                            int dis = Integer.parseInt(sp.getSelectedItem().toString().split(" ")[0]);
+//                            fetchShelters(location,dis);
+//                            Log.d("Arumugam","fetch called with "+location.getLatitude()+","+location.getLongitude());
+//                        }
+//                        else
+//                        {
+//                            print.fprintf("Failed to get your location. Please enable GPS if it is disabled.");
+//                        }
+//                }
+//            });
+//    }
 }
