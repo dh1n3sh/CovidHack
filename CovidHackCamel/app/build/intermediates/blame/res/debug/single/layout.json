@@ -1,0 +1,86 @@
+[
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/rv_activity_shop_info.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/rv_activity_shop_info.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/card_covid_stats.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/card_covid_stats.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/card_customer_order.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/card_customer_order.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/card_news_back.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/card_news_back.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/card_harish_emergency_contact_num.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/card_harish_emergency_contact_num.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/card_dashboard.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/card_dashboard.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/rv_activity_covid_status.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/rv_activity_covid_status.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/rv_customer_order_info.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/rv_customer_order_info.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/rv_harish_emergency_contact_num.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/rv_harish_emergency_contact_num.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/card_order.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/card_order.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/covid_status_card.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/covid_status_card.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/dashboard_activity.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/dashboard_activity.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_main.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/card_news_front.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/card_news_front.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/card_shop.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/card_shop.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/rv_activity_order_info.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/rv_activity_order_info.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_graph_daily.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/activity_graph_daily.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/card_news.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/card_news.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_person_loc_harish.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/activity_person_loc_harish.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/rv_infected_people_info.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/rv_infected_people_info.xml"
+    },
+    {
+        "merged": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/card_infected_people.xml",
+        "source": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/src/main/res/layout/harish_layouts/layout/card_infected_people.xml"
+    }
+]

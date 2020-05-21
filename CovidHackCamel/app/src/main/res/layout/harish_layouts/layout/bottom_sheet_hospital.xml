@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="150dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:background="#E8E8E8"
+    android:elevation="10dp"
+    >
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linear2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+
+<!--        android:background="#000"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+
+<!--        >-->
+<!--&lt;!&ndash;        <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/imageView"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="60dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="60dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginBottom="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginLeft="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginStart="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginTop="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:layout_constraintTop_toTopOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:srcCompat="@drawable/user_image"&ndash;&gt;-->
+<!--&lt;!&ndash;            />&ndash;&gt;-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textAlignment="center"-->
+<!--            android:text="Hospital Finder"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="26sp"-->
+<!--            android:layout_marginVertical="10dp"/>-->
+
+<!--    </LinearLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical"
+
+        android:id="@+id/linear1"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+<!--        <TextView-->
+
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textAlignment="center"-->
+<!--            android:text="Hospital Finder"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="26sp"-->
+<!--            android:background="#000"-->
+<!--            android:paddingVertical="10dp"-->
+<!--            />-->
+
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_width="30dp"
+            android:layout_height="6dp"
+            android:background="@drawable/horizontal_bar"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hospital Finder"
+            android:paddingTop="15dp"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="10dp"
+            android:paddingHorizontal="10dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="left"
+            android:layout_marginVertical="10dp"
+            android:paddingBottom="15dp">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:onClick="finderOption"
+            android:background="@drawable/rounded_button_selected"
+            android:id="@+id/search_hospital"
+            android:text="Hospital"
+            android:textColor="#FFF"
+            android:textSize="12sp"
+            android:layout_marginHorizontal="15dp"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:onClick="finderOption"
+            android:background="@drawable/rounded_button_unselected"
+            android:id="@+id/search_pharmacy"
+            android:text="Pharmacy"
+            android:textSize="12sp"
+            android:textColor="#000"
+            />
+        </LinearLayout>
+
+<!--        <Spinner-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/category"-->
+<!--            android:textAlignment="center"-->
+<!--            android:background="@android:drawable/btn_default"-->
+<!--            />-->
+
+<!--        <Button-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:background="@drawable/rounded_button_unselected"-->
+<!--            android:id="@+id/search"-->
+<!--            android:text="Search"-->
+<!--            android:textColor="#000"-->
+<!--            />-->
+
+    </LinearLayout>
+
+<!--Below Linear layout is the schema for recycler view-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/linear1"
+        app:layout_constraintHorizontal_bias="1.0"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/linear1"
+        app:layout_constraintTop_toBottomOf="@+id/linear1"
+
+        android:id="@+id/hospital_details_linear">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="8"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+
+        android:orientation="vertical"
+
+        android:paddingHorizontal="7dp"
+        android:paddingVertical="10dp"
+
+      >
+
+
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/imageView"-->
+            <!--                android:layout_width="100dp"-->
+            <!--                android:layout_height="100dp"-->
+            <!--                android:layout_marginStart="20dp"-->
+            <!--                android:layout_marginTop="44dp"-->
+            <!--                android:layout_marginEnd="8dp"-->
+            <!--                android:background="@drawable/hospital"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintHorizontal_bias="0.472"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+            <TextView
+                android:id="@+id/hospitalname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="10dp"
+
+                android:text="HOSPITAL NAME"
+
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+              />
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/imageView4"-->
+            <!--                android:layout_width="50dp"-->
+            <!--                android:layout_height="50dp"-->
+            <!--                android:layout_marginStart="64dp"-->
+            <!--                android:layout_marginTop="40dp"-->
+            <!--                android:layout_marginEnd="8dp"-->
+            <!--                android:src="@drawable/signs"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintHorizontal_bias="0.394"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/hospitalname" />-->
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+
+                android:text="address"
+
+                android:textColor="#000000"
+                android:textSize="18sp"
+              />
+
+
+            <RatingBar
+                android:id="@+id/rating"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+
+                android:isIndicator="true"
+                android:numStars="5"
+                android:stepSize="0.1"
+           />
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/imageView6"-->
+            <!--                android:layout_width="76dp"-->
+            <!--                android:layout_height="77dp"-->
+            <!--                android:layout_marginStart="92dp"-->
+            <!--                android:layout_marginTop="30dp"-->
+            <!--                android:src="@drawable/openclose"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/rating" />-->
+
+
+        <TextView
+                android:id="@+id/openinghrs"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+
+                android:text="closed"
+
+                android:textColor="#000000"
+                android:textSize="18sp"
+            android:layout_marginHorizontal="10dp"
+              />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/directions"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+
+                android:background="@mipmap/direction_icon"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+                                                        
+
+    
+                 
+                     
+                                                                                           
+           
+
+<!--        <com.wajahatkarim3.easyflipview.EasyFlipView-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_margin="8dp"-->
+<!--            app:flipOnTouch="true"-->
+<!--            app:flipEnabled="true"-->
+<!--            app:flipDuration="400"-->
+<!--            app:flipType="vertical"-->
+<!--            app:flipFrom="front"-->
+<!--            app:autoFlipBack="true"-->
+<!--            app:autoFlipBackTime="5000"-->
+<!--            android:background="@color/black"-->
+
+<!--            >-->
+
+<!--            &lt;!&ndash; Back Layout Goes Here &ndash;&gt;-->
+<!--            <include layout="@layout/card_news_back" />-->
+
+<!--            &lt;!&ndash; Front Layout Goes Here &ndash;&gt;-->
+<!--            <include layout="@layout/card_news_front"/>-->
+
+<!--        </com.wajahatkarim3.easyflipview.EasyFlipView>-->
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:tag="layout/card_news_0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/store"/>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+         
