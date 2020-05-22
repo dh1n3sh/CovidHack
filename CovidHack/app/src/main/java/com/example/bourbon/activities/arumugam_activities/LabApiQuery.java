@@ -3,36 +3,61 @@ package com.example.bourbon.activities.arumugam_activities;
 import android.content.Context;
 import android.util.Log;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 
-import org.json.JSONObject;
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+// Doesnt work anymore.. as it is difficult to link a static class with valueeventlistener.
+
 
 public class LabApiQuery {
 
-    private static String url = "https://covid.icmr.org.in/index.php/testing-facilities?option=com_hotspots&view=jsonv4&task=gethotspots&hs-language=en-GB&page=1&per_page=1000&total_pages=1&total_entries=572&cat=&level=2&ne=64.702203%2C180&sw=-77.037793%2C-180&c=-19.13832%2C28.387855&fs=0&offset=0&format=raw";
-    public static void ping(Context context)
+    private static DatabaseReference databaseReference;
+    private static ArrayList<LatLng> result;
+
+    public static void ping()
     {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        Log.d("apiping","ping method called.");
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        databaseReference = FirebaseDatabase.getInstance().getReference("/labs/items");
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                Log.d("apiping",response.toString());
+                result = null;
 
+                try {
+
+                    Log.d("datasnapshot",dataSnapshot.getValue().toString());
+                    ArrayList<HashMap<String,Double>>jsonArray = (ArrayList<HashMap<String, Double>>) dataSnapshot.getValue();
+                    result = new ArrayList<LatLng>();
+
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        HashMap<String,Double> jsonObject= jsonArray.get(i);
+                        result.add(new LatLng(jsonObject.get("lat"),jsonObject.get("lng")));
+                    }
+
+                    Log.d("result",result.toString());
+                }
+                catch(Exception e)
+                {
+                    result=null;
+                    Log.d("jsonerror",e.toString());
+                }
             }
-        }, new Response.ErrorListener() {
+
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("apiping",error.toString());
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("labapi",databaseError.toString());
             }
         });
 
-        requestQueue.add(jsonObjectRequest);
     }
 }

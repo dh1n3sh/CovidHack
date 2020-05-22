@@ -42,6 +42,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
@@ -57,6 +58,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import print.Print;
@@ -67,8 +69,6 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
     private GoogleMap mMap;
     private DatabaseReference databaseReference;
     private Print print;
-    private Button search;
-    private Spinner sp;
     private FusedLocationProviderClient flpc;
     private LocationCallback locationCallback;
     private LocationRequest locationRequest;
@@ -90,22 +90,12 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
         int max = 200;
         int min = 0;
         seekValue = 50;
-        // Testing purpose
 
-        LabApiQuery.ping(getApplicationContext());
         View bottomSheet = findViewById(R.id.bottom_sheet_shelter);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
-        //Test done
-
         print = new Print(this);
         helpMsg = findViewById(R.id.shelter_help);
-//        sp = (Spinner) findViewById(R.id.distance);
-//
-//        String[] options = new String[] { "5 Kilometers","10 Kilometers","50 Kilometers","100 Kilometers"};
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,options);
-//        sp.setAdapter(adapter);
-
         flpc = LocationServices.getFusedLocationProviderClient(this);
 
         locationRequest = new LocationRequest();
@@ -194,6 +184,58 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         checkingPermissions();
 
+
+
+        // Testing purpose
+
+       // LabApiQuery.ping(getApplicationContext());
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                databaseReference = FirebaseDatabase.getInstance().getReference("/labs/items");
+
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        ArrayList <LatLng> result = null;
+
+                        try {
+
+                            Log.d("datasnapshot",dataSnapshot.getValue().toString());
+                            ArrayList<HashMap<String,Double>>jsonArray = (ArrayList<HashMap<String, Double>>) dataSnapshot.getValue();
+                            result = new ArrayList<LatLng>();
+
+                            for (int i = 0; i < jsonArray.size(); i++) {
+                                HashMap<String,Double> jsonObject= jsonArray.get(i);
+                                result.add(new LatLng(jsonObject.get("lat"),jsonObject.get("lng")));
+                            }
+
+                            Log.d("result",result.toString());
+
+                            plotlabs(result);
+                        }
+                        catch(Exception e)
+                        {
+                            result=null;
+                            Log.d("jsonerror",e.toString());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.d("labapi",databaseError.toString());
+                    }
+                });
+
+            }
+        }).start();
+
+
+        //Test done
+
+
     }
 
     private void fetchShelters(Location location,int dis)
@@ -225,15 +267,6 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
         Log.d("Arumugam","entered plot markers");
         mMap.clear();
 
-        LatLngBounds.Builder latlngbuilder = new LatLngBounds.Builder();
-
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(new LatLng(location.getLatitude(),location.getLongitude()));
-        markerOptions.title("Your Location");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-        latlngbuilder.include(new LatLng(location.getLatitude(),location.getLongitude()));
-//        mMap.addMarker(markerOptions);
-
         int cnt=0;
 
         double curdist=0.0;
@@ -253,15 +286,12 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
                 MarkerOptions markerOptions2 = new MarkerOptions();
                 markerOptions2.position(ll);
                 markerOptions2.title(title);
-                latlngbuilder.include(ll);
                 mMap.addMarker(markerOptions2);
             }
         }
         addCircle(mylocation,seekValue*1000);
         Log.d("Arumugam","Count : "+cnt);
         print.sprintf("got "+cnt+" shelters in the radius of "+dis);
-//        LatLngBounds latLngBounds = latlngbuilder.build();
-//        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds,200));
     }
 
     private void checkLocation()
@@ -424,22 +454,31 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
         return zoomLevel;
     }
 
-//    @Override
-//    public void onClick(View v) {
-//            flpc.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-//                @Override
-//                public void onSuccess(Location location) {
-//                        if(location!=null)
-//                        {
-//                            int dis = Integer.parseInt(sp.getSelectedItem().toString().split(" ")[0]);
-//                            fetchShelters(location,dis);
-//                            Log.d("Arumugam","fetch called with "+location.getLatitude()+","+location.getLongitude());
-//                        }
-//                        else
-//                        {
-//                            print.fprintf("Failed to get your location. Please enable GPS if it is disabled.");
-//                        }
-//                }
-//            });
-//    }
+
+    //Test method for lab module.
+
+    public void plotlabs(ArrayList<LatLng> lls)
+    {
+        runOnUiThread(() -> {
+
+            mMap.clear();
+
+            if(lls==null)
+            {
+                print.fprintf("No Labs.");
+                return;
+            }
+
+            for(LatLng ll : lls)
+            {
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(ll);
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                mMap.addMarker(markerOptions);
+            }
+
+            print.sprintf("plotted "+lls.size()+" labs");
+        });
+    }
+
 }
