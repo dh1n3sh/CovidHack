@@ -76,6 +76,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
     private TextView helpMsg ;
     private Circle mCircle;
     private BottomSheetBehavior bottomSheetBehavior;
+    private LatLng mylocation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +86,10 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
                 .findFragmentById(R.id.map_shelter_mapping);
         mapFragment.getMapAsync(this);
 
+        int step = 1;
+        int max = 200;
+        int min = 0;
+        seekValue = 50;
         // Testing purpose
 
         LabApiQuery.ping(getApplicationContext());
@@ -106,10 +111,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
         locationRequest = new LocationRequest();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(1000);
-        int step = 1;
-        int max = 200;
-        int min = 0;
-        seekValue = 50;
+
 
         locationCallback = new LocationCallback(){
             @Override
@@ -119,11 +121,10 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
                 if(locationResult==null) return;
 
                 Location location = locationResult.getLastLocation();
-
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),15.0f));
-//                search = (Button) findViewById(R.id.plot);
-//                search.setOnClickListener(MapsActivityShelterMapping.this::onClick);
+                mylocation = new LatLng(location.getLatitude(),location.getLongitude());
                 addCircle(new LatLng(location.getLatitude(),location.getLongitude()),seekValue*1000);
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),getZoomLevel(mCircle)),400,null);
+
                 Log.d("Arumugam","first location got button enabled.");
                 flpc.removeLocationUpdates(this);
             }
@@ -132,7 +133,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
 
         SeekBar seekbar = findViewById(R.id.seekBar);
         seekbar.setMax( (max - min) / step );
-
+        seekbar.setProgress(seekValue);
 
         seekbar.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener()
@@ -147,6 +148,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
                                 if(location!=null)
                                 {
                                     int dis = seekValue;
+                                    mylocation = new LatLng(location.getLatitude(),location.getLongitude());
                                     fetchShelters(location,dis);
                                     Log.d("Arumugam","fetch called with "+location.getLatitude()+","+location.getLongitude());
                                 }
@@ -169,6 +171,8 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
                         seekValue = min + (progress * step);
                         helpMsg.setText("Selected distance : "+seekValue+" km");
                         mCircle.setRadius(seekValue*1000);
+                        mMap.animateCamera( CameraUpdateFactory.newLatLngZoom(mylocation,getZoomLevel(mCircle)), 400,null);
+
                     }
                 }
         );
@@ -220,6 +224,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
     {
         Log.d("Arumugam","entered plot markers");
         mMap.clear();
+
         LatLngBounds.Builder latlngbuilder = new LatLngBounds.Builder();
 
         MarkerOptions markerOptions = new MarkerOptions();
@@ -227,7 +232,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
         markerOptions.title("Your Location");
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
         latlngbuilder.include(new LatLng(location.getLatitude(),location.getLongitude()));
-        mMap.addMarker(markerOptions);
+//        mMap.addMarker(markerOptions);
 
         int cnt=0;
 
@@ -252,11 +257,11 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
                 mMap.addMarker(markerOptions2);
             }
         }
-
+        addCircle(mylocation,seekValue*1000);
         Log.d("Arumugam","Count : "+cnt);
         print.sprintf("got "+cnt+" shelters in the radius of "+dis);
-        LatLngBounds latLngBounds = latlngbuilder.build();
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds,200));
+//        LatLngBounds latLngBounds = latlngbuilder.build();
+//        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds,200));
     }
 
     private void checkLocation()
@@ -403,10 +408,20 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
         CircleOptions circleOptions = new CircleOptions();
         circleOptions.center(latLng);
         circleOptions.radius(radius);
-        circleOptions.strokeColor(Color.argb(255, 255, 0,0));
-        circleOptions.fillColor(Color.argb(64, 255, 0,0));
+        circleOptions.strokeColor(Color.argb(255, 0, 191,165));
+        circleOptions.fillColor(Color.argb(64, 100, 255,218));
         circleOptions.strokeWidth(4);
         mCircle = mMap.addCircle(circleOptions);
+    }
+
+    public float getZoomLevel(Circle circle) {
+        float zoomLevel = 15;
+        if (circle != null){
+            double radius = circle.getRadius();
+            double scale = radius / 500;
+            zoomLevel =(float) (zoomLevel - Math.log(scale) / Math.log(2));
+        }
+        return zoomLevel;
     }
 
 //    @Override

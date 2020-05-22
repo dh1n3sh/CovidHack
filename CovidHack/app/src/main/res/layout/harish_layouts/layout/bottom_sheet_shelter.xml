@@ -71,7 +71,7 @@
                 android:layout_marginTop="15dp"
                 android:progressDrawable="@drawable/seek_bar"
                 android:thumb="@drawable/seek_thumb"
-                android:max="200"
+                android:max="2000"
                 android:progress="100"
                 />
 <!--            <Button-->
