@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <supports-screens
         android:anyDensity="true"
@@ -24,12 +24,12 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="false"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <!--
@@ -45,8 +45,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".activities.arumugam_activities.MapsActivityLabs"
+            android:label="@string/title_activity_maps_labs"></activity>
+        <activity
             android:name=".activities.arumugam_activities.MapsActivityShelterMapping"
-            android:label="@string/title_activity_maps_shelter_mapping"></activity>
+            android:label="@string/title_activity_maps_shelter_mapping" />
         <activity android:name=".activities.clement_activities.Customer_Order_Details" />
         <activity android:name=".activities.harish_activities.recycler_view_acts.InfectedPeopleInfo" /> <!-- <activity android:name=".activities.harish_activities.Dashboard"> -->
         <!-- &lt;!&ndash;        <activity android:name=".activities.harish_activities.TestDashboard">&ndash;&gt; -->
@@ -65,7 +68,6 @@
         </activity>
         <activity android:name=".activities.harish_activities.PersonLocAct" />
         <activity android:name=".activities.clement_activities.Splash_Screen" />
-
         <activity android:name=".activities.clement_activities.Order_Details" />
         <activity android:name=".activities.harish_activities.GraphDaily" />
         <activity android:name=".activities.clement_activities.Order_Food" />

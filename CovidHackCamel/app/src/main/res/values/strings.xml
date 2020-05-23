@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Covidence</string>
+    <string name="gender_prompt">Choose Gender</string>
+    <string-array name="gender_arrays">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <string name="title_activity_maps">Map</string>
+
+    <string-array name="work_arrays">
+        <item>Traffic</item>
+        <item>Distribution</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="store_type">
+        <item>Grocery</item>
+        <item>Departmental</item>
+        <item>Fruits</item>
+        <item>Fruits and Groceries</item>
+    </string-array>
+
+</resources>

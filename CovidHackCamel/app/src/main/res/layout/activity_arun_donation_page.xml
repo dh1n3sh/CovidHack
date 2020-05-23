@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#e3e3e3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="15dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="116dp"
+            android:layout_height="81dp"
+
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/loan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.479"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:text="WILLING TO DONATE ?"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:text="CHOOSE THINGS YOU WISH TO DONATE"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <CheckBox
+            android:id="@+id/food"
+            android:layout_width="345dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="8dp"
+            android:text="     FOOD"
+            android:textColor="#000000"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <CheckBox
+            android:id="@+id/clothing"
+            android:layout_width="345dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="     CLOTHING"
+            android:textColor="#000000"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/food" />
+
+        <CheckBox
+            android:id="@+id/others"
+            android:layout_width="345dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:text="     OTHERS"
+            android:textColor="#000000"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clothing" />
+
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/button"
+            android:backgroundTint="#ebebeb"
+            android:text="  DONATE  "
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.425"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/extra" />
+
+        <EditText
+            android:id="@+id/extra"
+            android:layout_width="345dp"
+            android:layout_height="138dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/button"
+            android:backgroundTint="#ebebeb"
+            android:inputType="textMultiLine"
+            android:maxLines="6"
+            android:padding="10dp"
+            android:scrollHorizontally="false"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/others" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

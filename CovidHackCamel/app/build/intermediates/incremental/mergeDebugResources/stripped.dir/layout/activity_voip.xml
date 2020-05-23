@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.clement_activities.Voip">
+
+    <Button
+        android:id="@+id/call"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/button"
+        android:text="Call"
+        android:textSize="20dp"
+        android:backgroundTint="#ebebeb"
+        android:textStyle="bold" />
+</LinearLayout>

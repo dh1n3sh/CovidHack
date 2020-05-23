@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+                                                       
+                                                       
+    
+                 
+                     
+                                                                                            
+           
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/emergencyCard"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="20dp"
+        card_view:cardBackgroundColor="@color/yellow"
+        android:padding="10dp"
+        app:cardCornerRadius="25dp" android:tag="layout/card_harish_emergency_contact_num_0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:card_view="http://schemas.android.com/tools">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/emerDistName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textAlignment="center"
+                        android:layout_centerHorizontal="true"
+                        android:tag="binding_1"          
+                        android:textSize="20dp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:src="@drawable/technology"/>
+
+                    <TextView
+                        android:id="@+id/emergencyNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/emerDistName"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="15dp"
+                        android:layout_toRightOf="@+id/emergencyNoLabel"
+                        android:tag="binding_2"          />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:src="@drawable/communications"/>
+
+                    <TextView
+                        android:id="@+id/emerLandLineNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/emergencyNo"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="15dp"
+                        android:layout_toRightOf="@+id/emerLandLineNoLabel"
+                        android:tag="binding_3"         />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+         
