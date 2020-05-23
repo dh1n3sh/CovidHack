@@ -86,7 +86,7 @@ public class MapsActivityLabs extends FragmentActivity implements OnMapReadyCall
                 if(location!=null)
                 {
                     flpc.removeLocationUpdates(this);
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),15.0f));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),13.0f));
                 }
             }
         };

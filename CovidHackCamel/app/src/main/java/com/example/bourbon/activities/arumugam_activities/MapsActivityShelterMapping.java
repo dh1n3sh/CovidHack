@@ -1,6 +1,7 @@
 package com.example.bourbon.activities.arumugam_activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -13,16 +14,13 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.SeekBar;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.bourbon.R;
 import com.google.android.gms.common.ConnectionResult;
@@ -37,17 +35,13 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -59,7 +53,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import print.Print;
@@ -78,19 +71,26 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
     private Circle mCircle;
     private BottomSheetBehavior bottomSheetBehavior;
     private LatLng mylocation;
+    private HashMap<String,String> dict;
+    private SeekBar seekbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_shelter_mapping_arumugam);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map_shelter_mapping);
+                .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        dict = null;
+
+        fetchShelters();
 
         int step = 1;
         int max = 200;
-        int min = 0;
-        seekValue = 50;
+
+        seekValue = 50;int min = 0;
 
         View bottomSheet = findViewById(R.id.bottom_sheet_shelter);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
@@ -105,6 +105,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
 
 
         locationCallback = new LocationCallback(){
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
@@ -113,6 +114,11 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
 
                 Location location = locationResult.getLastLocation();
                 mylocation = new LatLng(location.getLatitude(),location.getLongitude());
+                seekValue=getNearest(location);
+                Log.d("nearest",""+seekValue);
+                seekbar.setProgress(seekValue);
+                seekbar.setMax((max-min)/step);
+                plotMarkers(location,seekValue);
                 addCircle(new LatLng(location.getLatitude(),location.getLongitude()),seekValue*1000);
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),getZoomLevel(mCircle)),400,null);
 
@@ -122,9 +128,9 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
         };
 
 
-        SeekBar seekbar = findViewById(R.id.seekBar);
-        seekbar.setMax( (max - min) / step );
-        seekbar.setProgress(seekValue);
+        seekbar = findViewById(R.id.seekBar);
+        //seekbar.setMax( (max - min) / step );
+        //seekbar.setProgress(seekValue);
 
         seekbar.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener()
@@ -140,7 +146,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
                                 {
                                     int dis = seekValue;
                                     mylocation = new LatLng(location.getLatitude(),location.getLongitude());
-                                    fetchShelters(location,dis);
+                                    plotMarkers(location,dis);
                                     Log.d("Arumugam","fetch called with "+location.getLatitude()+","+location.getLongitude());
                                 }
                                 else
@@ -160,6 +166,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
                     @Override
                     public void onStartTrackingTouch(SeekBar seekBar) {}
 
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress,
                                                   boolean fromUser)
@@ -167,8 +174,11 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
 
                         seekValue = min + (progress * step);
                         helpMsg.setText("Selected distance : "+seekValue+" km");
-                        mCircle.setRadius(seekValue*1000);
-                        mMap.animateCamera( CameraUpdateFactory.newLatLngZoom(mylocation,getZoomLevel(mCircle)), 400,null);
+                        if(mCircle==null)
+                            addCircle(mylocation,seekValue*1000);
+                        else
+                            mCircle.setRadius(seekValue*1000);
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mylocation, getZoomLevel(mCircle)), 400, null);
 
                     }
                 }
@@ -185,6 +195,26 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+    private int getNearest(Location mylocation)
+    {
+        Double res = Double.MAX_VALUE;
+
+        for(String key : dict.keySet())
+        {
+            Double lat = Double.parseDouble(dict.get(key).split(",")[0]);
+            Double lng = Double.parseDouble(dict.get(key).split(",")[1]);
+            Location temp = new Location("gps");
+            temp.setLatitude(lat);
+            temp.setLongitude(lng);
+            res=Math.min(res,mylocation.distanceTo(temp));
+        }
+
+        res=res/1000;
+
+        return (int) Math.ceil(res);
+
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -193,7 +223,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
 
     }
 
-    private void fetchShelters(Location location,int dis)
+    private void fetchShelters()
     {
         databaseReference=FirebaseDatabase.getInstance().getReference("/Shelters");
 
@@ -201,23 +231,25 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    HashMap<String, String> dict = (HashMap<String, String>) dataSnapshot.getValue();
-                    plotMarkers(dict, location,dis);
+                    dict = (HashMap<String, String>) dataSnapshot.getValue();
+                    //plotMarkers(dict, location,dis);
                 }
                 else
                 {
-                    print.fprintf("Sorry. No shelters found.");
+                    dict=null;
+                    //print.fprintf("Sorry. No shelters found.");
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 print.fprintf("Failed to connect to server");
+                dict=null;
             }
         });
     }
 
-    private void plotMarkers(HashMap<String,String> dict,Location location,int dis)
+    private void plotMarkers(Location location,int dis)
     {
         Log.d("Arumugam","entered plot markers");
         mMap.clear();
@@ -225,6 +257,12 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
         int cnt=0;
 
         double curdist=0.0;
+
+        if(dict==null)
+        {
+            print.fprintf("Shelters not found");
+            return;
+        }
 
         for(String title : dict.keySet())
         {
