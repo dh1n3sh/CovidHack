@@ -16,8 +16,6 @@ public class ActivityMainBindingImpl extends ActivityMainBinding  {
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.textView, 1);
         sViewsWithIds.put(R.id.recyclerView, 2);
-        sViewsWithIds.put(R.id.newsLabel, 3);
-        sViewsWithIds.put(R.id.newsRecyclerView, 4);
     }
     // views
     @NonNull
@@ -28,12 +26,10 @@ public class ActivityMainBindingImpl extends ActivityMainBinding  {
     // Inverse Binding Event Handlers
 
     public ActivityMainBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 5, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 3, sIncludes, sViewsWithIds));
     }
     private ActivityMainBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (android.widget.TextView) bindings[3]
-            , (androidx.recyclerview.widget.RecyclerView) bindings[4]
             , (androidx.recyclerview.widget.RecyclerView) bindings[2]
             , (android.widget.TextView) bindings[1]
             );

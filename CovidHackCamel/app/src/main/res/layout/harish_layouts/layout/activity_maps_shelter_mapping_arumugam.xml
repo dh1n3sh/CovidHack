@@ -32,5 +32,5 @@
 
 
 <!--    </LinearLayout>-->
-    <include layout="@layout/bottom_sheet_shelter" />
+<!--    <include layout="@layout/bottom_sheet_shelter" />-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

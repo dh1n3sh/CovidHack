@@ -77,13 +77,13 @@ class Dashboard : Activity() {
         binding=DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         configFeaturesRecyclerView()
-        configNewsRecyclerView()
+
         fetchProducts()
 
         //val newsApiHelper=NewsApiHelper(this,newsProducts,newsAdapter)
         //newsApiHelper.fetchNews()
 
-        fetchNews()
+        //fetchNews()
 
 
         binding?.pd= ActivityNames(transition,p,this)
@@ -142,61 +142,49 @@ class Dashboard : Activity() {
 
         binding?.recyclerView?.itemAnimator= SlideInUpAnimator(OvershootInterpolator(1f))
     }
-    private fun configNewsRecyclerView() {
-        binding?.newsRecyclerView?.setHasFixedSize(true)
-        val lm=LinearLayoutManager(this)
-        lm.orientation=RecyclerView.HORIZONTAL
-        binding?.newsRecyclerView?.setLayoutManager(lm)
-        binding?.newsRecyclerView?.adapter = ScaleInAnimationAdapter(newsAdapter).apply{
-            setFirstOnly(false)
-            setDuration(1000)
-            setHasStableIds(false)
-            setInterpolator(OvershootInterpolator(.100f))
-        }
-        binding?.newsRecyclerView?.itemAnimator= SlideInUpAnimator(OvershootInterpolator(1f))
-    }
-
-    fun fetchNews(){
-        val requestQueue= Volley.newRequestQueue(this)
-        val apiKey="ab1e7cf4b1534ec0a0f4f36589e81f18"
-
-        val url = "http://newsapi.org/v2/top-headlines?country=in&apiKey=$apiKey"
 
 
-        println("Reached fetchNews")
-        val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url, null,
-                Response.Listener { response ->
-                    println("""
-                        Response: $response
-                    """.trimIndent())
-
-                    val articles=response.getJSONArray("articles")
-
-                    for(i in 0..11){
-                        val article=articles.getJSONObject(i)
-                        val item=NewsClassModel(article.getString("title"),
-                                article.getString("description"),
-                                article.getString("author"))
-
-                        newsProducts.add(item)
-                        newsAdapter.notifyItemInserted(i)
-                        println("Adding Items: $item")
-                    }
-
-
-                },
-                Response.ErrorListener { e ->
-                    // TODO: Handle error
-                    println("""
-                        Error:  ${e.message}
-                    """.trimIndent())
-                }
-        )
-
-        requestQueue.add(jsonObjectRequest)
-
-
-    }
+//    fun fetchNews(){
+//        val requestQueue= Volley.newRequestQueue(this)
+//        val apiKey="ab1e7cf4b1534ec0a0f4f36589e81f18"
+//
+//        val url = "http://newsapi.org/v2/top-headlines?country=in&apiKey=$apiKey"
+//
+//
+//        println("Reached fetchNews")
+//        val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url, null,
+//                Response.Listener { response ->
+//                    println("""
+//                        Response: $response
+//                    """.trimIndent())
+//
+//                    val articles=response.getJSONArray("articles")
+//
+//                    for(i in 0..11){
+//                        val article=articles.getJSONObject(i)
+//                        val item=NewsClassModel(article.getString("title"),
+//                                article.getString("description"),
+//                                article.getString("author"))
+//
+//                        newsProducts.add(item)
+//                        newsAdapter.notifyItemInserted(i)
+//                        println("Adding Items: $item")
+//                    }
+//
+//
+//                },
+//                Response.ErrorListener { e ->
+//                    // TODO: Handle error
+//                    println("""
+//                        Error:  ${e.message}
+//                    """.trimIndent())
+//                }
+//        )
+//
+//        requestQueue.add(jsonObjectRequest)
+//
+//
+//    }
 
     private fun fetchLocation() {
         if(ContextCompat.checkSelfPermission(this,

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-small-v4/values-small-v4.xml",
+            "outputFile": "C:\\CovidHack\\CovidHackCamel\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-small-v4\\values-small-v4.xml",
             "map": [
                 {
-                    "source": "/home/smith/.gradle/caches/transforms-2/files-2.1/2c9f0e5b1b851e121edc071ad35ff91f/material-1.1.0/res/values-small-v4/values-small-v4.xml",
+                    "source": "D:\\AndroidStudio\\AndroidStudioFiles\\caches\\transforms-2\\files-2.1\\2c9f0e5b1b851e121edc071ad35ff91f\\material-1.1.0\\res\\values-small-v4\\values-small-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

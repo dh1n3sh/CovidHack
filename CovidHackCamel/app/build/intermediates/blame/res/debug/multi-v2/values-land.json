@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
+            "outputFile": "C:\\CovidHack\\CovidHackCamel\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "/home/smith/.gradle/caches/transforms-2/files-2.1/2c9f0e5b1b851e121edc071ad35ff91f/material-1.1.0/res/values-land/values-land.xml",
+                    "source": "D:\\AndroidStudio\\AndroidStudioFiles\\caches\\transforms-2\\files-2.1\\2c9f0e5b1b851e121edc071ad35ff91f\\material-1.1.0\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,24,30",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/home/smith/.gradle/caches/transforms-2/files-2.1/c10d9d339b12f959441afe07158b8b53/appcompat-1.1.0/res/values-land/values-land.xml",
+                    "source": "D:\\AndroidStudio\\AndroidStudioFiles\\caches\\transforms-2\\files-2.1\\c10d9d339b12f959441afe07158b8b53\\appcompat-1.1.0\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

@@ -17,7 +17,7 @@ import java.lang.Override;
 public class user_data_ViewBinding implements Unbinder {
   private user_data target;
 
-  private View view7f0a0167;
+  private View view7f0a0163;
 
   @UiThread
   public user_data_ViewBinding(user_data target) {
@@ -35,7 +35,7 @@ public class user_data_ViewBinding implements Unbinder {
     target.user_gender = Utils.findRequiredViewAsType(source, R.id.gender, "field 'user_gender'", Spinner.class);
     view = Utils.findRequiredView(source, R.id.send, "field 'user_send' and method 'onSendClicked'");
     target.user_send = Utils.castView(view, R.id.send, "field 'user_send'", Button.class);
-    view7f0a0167 = view;
+    view7f0a0163 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -57,7 +57,7 @@ public class user_data_ViewBinding implements Unbinder {
     target.user_gender = null;
     target.user_send = null;
 
-    view7f0a0167.setOnClickListener(null);
-    view7f0a0167 = null;
+    view7f0a0163.setOnClickListener(null);
+    view7f0a0163 = null;
   }
 }

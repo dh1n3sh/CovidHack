@@ -10,12 +10,6 @@
 
     </data>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:background="@drawable/bg"
-        android:layout_height="match_parent"
-        tools:context=".activities.harish_activities.Dashboard">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -37,29 +31,13 @@
                 android:id="@+id/recyclerView"
                 android:layout_below="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="match_parent"
                 tools:listitem="@layout/card_dashboard"
                 android:layout_centerInParent="true"
                 />
 
-            <TextView
-                android:id="@+id/newsLabel"
-                android:layout_below="@+id/recyclerView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="News Headlines:"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/newsRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/recyclerView"
-                android:layout_centerHorizontal="true"
-                tools:listitem="@layout/card_news_front"/>
+
         </RelativeLayout>
-    </ScrollView>
+
 </layout>

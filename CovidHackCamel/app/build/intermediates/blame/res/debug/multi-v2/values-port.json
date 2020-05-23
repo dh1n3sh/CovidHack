@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/smith/AndroidStudioProjects/Covid-Collab/CovidHack/CovidHack/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml",
+            "outputFile": "C:\\CovidHack\\CovidHackCamel\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
             "map": [
                 {
-                    "source": "/home/smith/.gradle/caches/transforms-2/files-2.1/c10d9d339b12f959441afe07158b8b53/appcompat-1.1.0/res/values-port/values-port.xml",
+                    "source": "D:\\AndroidStudio\\AndroidStudioFiles\\caches\\transforms-2\\files-2.1\\c10d9d339b12f959441afe07158b8b53\\appcompat-1.1.0\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

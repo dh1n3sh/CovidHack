@@ -18,12 +18,6 @@ import java.lang.Object;
 
 public abstract class ActivityMainBinding extends ViewDataBinding {
   @NonNull
-  public final TextView newsLabel;
-
-  @NonNull
-  public final RecyclerView newsRecyclerView;
-
-  @NonNull
   public final RecyclerView recyclerView;
 
   @NonNull
@@ -33,11 +27,8 @@ public abstract class ActivityMainBinding extends ViewDataBinding {
   protected ActivityNames mPd;
 
   protected ActivityMainBinding(Object _bindingComponent, View _root, int _localFieldCount,
-      TextView newsLabel, RecyclerView newsRecyclerView, RecyclerView recyclerView,
-      TextView textView) {
+      RecyclerView recyclerView, TextView textView) {
     super(_bindingComponent, _root, _localFieldCount);
-    this.newsLabel = newsLabel;
-    this.newsRecyclerView = newsRecyclerView;
     this.recyclerView = recyclerView;
     this.textView = textView;
   }

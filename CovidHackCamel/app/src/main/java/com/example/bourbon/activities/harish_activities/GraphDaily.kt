@@ -59,7 +59,7 @@ class GraphDaily : AppCompatActivity() {
                 Response.Listener { response: JSONObject? ->
 
                     val districtsDaily: JSONObject? = response?.getJSONObject("districtsDaily")
-                    val keralaObj:JSONObject?=districtsDaily?.getJSONObject("Kerala")
+                    val keralaObj:JSONObject?=districtsDaily?.getJSONObject("Rajasthan")
 
                     val arr:JSONArray=keralaObj!!.getJSONArray(district)
 

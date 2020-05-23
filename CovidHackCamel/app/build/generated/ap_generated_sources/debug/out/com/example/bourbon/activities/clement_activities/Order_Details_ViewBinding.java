@@ -18,9 +18,9 @@ public class Order_Details_ViewBinding implements Unbinder {
 
   private View view7f0a0085;
 
-  private View view7f0a01d8;
+  private View view7f0a01d4;
 
-  private View view7f0a0149;
+  private View view7f0a0145;
 
   @UiThread
   public Order_Details_ViewBinding(Order_Details target) {
@@ -45,7 +45,7 @@ public class Order_Details_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.viewcart, "method 'onViewClicked'");
-    view7f0a01d8 = view;
+    view7f0a01d4 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -53,7 +53,7 @@ public class Order_Details_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.rejectorder, "method 'onViewClicked'");
-    view7f0a0149 = view;
+    view7f0a0145 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -76,9 +76,9 @@ public class Order_Details_ViewBinding implements Unbinder {
 
     view7f0a0085.setOnClickListener(null);
     view7f0a0085 = null;
-    view7f0a01d8.setOnClickListener(null);
-    view7f0a01d8 = null;
-    view7f0a0149.setOnClickListener(null);
-    view7f0a0149 = null;
+    view7f0a01d4.setOnClickListener(null);
+    view7f0a01d4 = null;
+    view7f0a0145.setOnClickListener(null);
+    view7f0a0145 = null;
   }
 }

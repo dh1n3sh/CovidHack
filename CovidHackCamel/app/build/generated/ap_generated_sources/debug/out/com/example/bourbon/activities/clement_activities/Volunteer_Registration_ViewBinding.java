@@ -16,7 +16,7 @@ import java.lang.Override;
 public class Volunteer_Registration_ViewBinding implements Unbinder {
   private Volunteer_Registration target;
 
-  private View view7f0a0195;
+  private View view7f0a0191;
 
   @UiThread
   public Volunteer_Registration_ViewBinding(Volunteer_Registration target) {
@@ -31,7 +31,7 @@ public class Volunteer_Registration_ViewBinding implements Unbinder {
     target.work = Utils.findRequiredViewAsType(source, R.id.work, "field 'work'", Spinner.class);
     target.skills = Utils.findRequiredViewAsType(source, R.id.skills, "field 'skills'", EditText.class);
     view = Utils.findRequiredView(source, R.id.submit, "method 'onViewClicked'");
-    view7f0a0195 = view;
+    view7f0a0191 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -50,7 +50,7 @@ public class Volunteer_Registration_ViewBinding implements Unbinder {
     target.work = null;
     target.skills = null;
 
-    view7f0a0195.setOnClickListener(null);
-    view7f0a0195 = null;
+    view7f0a0191.setOnClickListener(null);
+    view7f0a0191 = null;
   }
 }
