@@ -77,7 +77,7 @@ class Dashboard : Activity() {
         binding=DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         configFeaturesRecyclerView()
-        configNewsRecyclerView()
+        //configNewsRecyclerView()
         fetchProducts()
 
         //val newsApiHelper=NewsApiHelper(this,newsProducts,newsAdapter)
@@ -142,19 +142,19 @@ class Dashboard : Activity() {
 
         binding?.recyclerView?.itemAnimator= SlideInUpAnimator(OvershootInterpolator(1f))
     }
-    private fun configNewsRecyclerView() {
-        binding?.newsRecyclerView?.setHasFixedSize(true)
-        val lm=LinearLayoutManager(this)
-        lm.orientation=RecyclerView.HORIZONTAL
-        binding?.newsRecyclerView?.setLayoutManager(lm)
-        binding?.newsRecyclerView?.adapter = ScaleInAnimationAdapter(newsAdapter).apply{
-            setFirstOnly(false)
-            setDuration(1000)
-            setHasStableIds(false)
-            setInterpolator(OvershootInterpolator(.100f))
-        }
-        binding?.newsRecyclerView?.itemAnimator= SlideInUpAnimator(OvershootInterpolator(1f))
-    }
+//    private fun configNewsRecyclerView() {
+//        binding?.newsRecyclerView?.setHasFixedSize(true)
+//        val lm=LinearLayoutManager(this)
+//        lm.orientation=RecyclerView.HORIZONTAL
+//        binding?.newsRecyclerView?.setLayoutManager(lm)
+//        binding?.newsRecyclerView?.adapter = ScaleInAnimationAdapter(newsAdapter).apply{
+//            setFirstOnly(false)
+//            setDuration(1000)
+//            setHasStableIds(false)
+//            setInterpolator(OvershootInterpolator(.100f))
+//        }
+//        binding?.newsRecyclerView?.itemAnimator= SlideInUpAnimator(OvershootInterpolator(1f))
+//    }
 
     fun fetchNews(){
         val requestQueue= Volley.newRequestQueue(this)
