@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-108:12
-INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-108:12
-INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-108:12
-INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-108:12
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-102:12
+INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-102:12
+INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-102:12
+INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-102:12
 MERGED from [androidx.databinding:databinding-adapters:3.6.3] D:\AndroidStudio\AndroidStudioFiles\caches\transforms-2\files-2.1\d96b5fc92f09d5525751986cdff6557d\databinding-adapters-3.6.3\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.databinding:databinding-runtime:3.6.3] D:\AndroidStudio\AndroidStudioFiles\caches\transforms-2\files-2.1\0760113472da80bd445627408923204f\databinding-runtime-3.6.3\AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.Shashank02051997:FancyToast-Android:0.1.6] D:\AndroidStudio\AndroidStudioFiles\caches\transforms-2\files-2.1\b3d1ecb2fe90697f64d6b6328315b9ec\jetified-FancyToast-Android-0.1.6\AndroidManifest.xml:2:1-16:12
@@ -97,20 +97,20 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] D:\AndroidStudio\
 MERGED from [androidx.arch.core:core-runtime:2.0.0] D:\AndroidStudio\AndroidStudioFiles\caches\transforms-2\files-2.1\4df45454df8feea212eb4e996da0b19e\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [io.reactivex.rxjava2:rxandroid:2.0.0] D:\AndroidStudio\AndroidStudioFiles\caches\transforms-2\files-2.1\d3fc85b216357f43fb3cef434b0b4101\jetified-rxandroid-2.0.0\AndroidManifest.xml:15:1-21:12
 MERGED from [com.google.android.datatransport:transport-api:2.2.0] D:\AndroidStudio\AndroidStudioFiles\caches\transforms-2\files-2.1\5d83cd7200aa136e8a998cc33e28feb6\jetified-transport-api-2.2.0\AndroidManifest.xml:15:1-22:12
-INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-108:12
-INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-108:12
-INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-108:12
+INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-102:12
+INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-102:12
+INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-102:12
 	package
 		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:3:5-34
 		INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml
 		INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-108:12
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-102:12
 		INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-108:12
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:1-102:12
 		INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:2:11-69
@@ -168,20 +168,8 @@ uses-permission#android.permission.READ_PHONE_STATE
 ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:16:5-74
 	android:name
 		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:16:22-72
-supports-screens
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:18:5-23:39
-	android:largeScreens
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:20:9-36
-	android:smallScreens
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:23:9-36
-	android:normalScreens
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:21:9-37
-	android:resizeable
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:22:9-34
-	android:anyDensity
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:19:9-34
 application
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:25:5-106:19
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:19:5-100:19
 MERGED from [com.github.Shashank02051997:FancyToast-Android:0.1.6] D:\AndroidStudio\AndroidStudioFiles\caches\transforms-2\files-2.1\b3d1ecb2fe90697f64d6b6328315b9ec\jetified-FancyToast-Android-0.1.6\AndroidManifest.xml:11:5-14:38
 MERGED from [com.github.Shashank02051997:FancyToast-Android:0.1.6] D:\AndroidStudio\AndroidStudioFiles\caches\transforms-2\files-2.1\b3d1ecb2fe90697f64d6b6328315b9ec\jetified-FancyToast-Android-0.1.6\AndroidManifest.xml:11:5-14:38
 MERGED from [com.google.android.material:material:1.1.0] D:\AndroidStudio\AndroidStudioFiles\caches\transforms-2\files-2.1\2c9f0e5b1b851e121edc071ad35ff91f\material-1.1.0\AndroidManifest.xml:22:5-20
@@ -271,191 +259,191 @@ MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] D:\AndroidStudio\Andro
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.1.0] D:\AndroidStudio\AndroidStudioFiles\caches\transforms-2\files-2.1\fac95d35a9976ab26d4104dadccbdc3b\core-1.1.0\AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:31:9-35
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:25:9-35
 	android:label
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:28:9-41
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:22:9-41
 	android:hardwareAccelerated
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:32:9-44
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:26:9-44
 	android:roundIcon
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:30:9-54
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:24:9-54
 	android:largeHeap
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:29:9-33
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:23:9-33
 	android:icon
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:27:9-43
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:21:9-43
 	android:allowBackup
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:26:9-35
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:20:9-35
 	android:theme
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:33:9-65
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:27:9-65
 meta-data#com.google.android.geo.API_KEY
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:43:9-45:55
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:37:9-39:55
 	android:value
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:45:13-52
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:39:13-52
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:44:13-58
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:38:13-58
 activity#com.example.bourbon.activities.arumugam_activities.MapsActivityShelterMapping
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:47:9-49:84
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:41:9-43:84
 	android:label
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:49:13-72
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:43:13-72
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:48:13-86
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:42:13-86
 activity#com.example.bourbon.activities.clement_activities.Customer_Order_Details
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:50:9-90
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:44:9-90
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:50:19-87
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:44:19-87
 activity#com.example.bourbon.activities.harish_activities.recycler_view_acts.InfectedPeopleInfo
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:51:9-104
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:45:9-104
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:51:19-101
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:45:19-101
 meta-data#firebase_performance_logcat_enabled
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:54:9-56:36
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:48:9-50:36
 	android:value
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:56:13-33
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:50:13-33
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:55:13-63
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:49:13-63
 activity#com.example.bourbon.activities.harish_activities.Dashboard
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:57:9-65:20
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:51:9-59:20
 	android:theme
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:59:13-43
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:53:13-43
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:58:13-67
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:52:13-67
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:60:13-64:29
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:54:13-58:29
 action#android.intent.action.MAIN
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:61:17-69
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:55:17-69
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:61:25-66
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:55:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:63:17-77
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:57:17-77
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:63:27-74
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:57:27-74
 activity#com.example.bourbon.activities.harish_activities.PersonLocAct
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:66:9-79
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:60:9-79
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:66:19-76
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:60:19-76
 activity#com.example.bourbon.activities.clement_activities.Splash_Screen
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:67:9-81
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:61:9-81
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:67:19-78
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:61:19-78
 activity#com.example.bourbon.activities.clement_activities.Order_Details
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:69:9-81
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:63:9-81
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:69:19-78
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:63:19-78
 activity#com.example.bourbon.activities.harish_activities.GraphDaily
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:70:9-77
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:64:9-77
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:70:19-74
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:64:19-74
 activity#com.example.bourbon.activities.clement_activities.Order_Food
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:71:9-78
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:65:9-78
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:71:19-75
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:65:19-75
 activity#com.example.bourbon.activities.clement_activities.E_Pass
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:72:9-74
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:66:9-74
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:72:19-71
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:66:19-71
 activity#com.example.bourbon.activities.clement_activities.No_Network
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:73:9-78
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:67:9-78
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:73:19-75
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:67:19-75
 activity#com.example.bourbon.activities.clement_activities.Store_Menu
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:74:9-78
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:68:9-78
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:74:19-75
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:68:19-75
 activity#com.example.bourbon.activities.harish_activities.recycler_view_acts.OrderInfo
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:75:9-95
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:69:9-95
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:75:19-92
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:69:19-92
 activity#com.example.bourbon.activities.harish_activities.recycler_view_acts.ShopInfo
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:76:9-94
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:70:9-94
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:76:19-91
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:70:19-91
 activity#com.example.bourbon.activities.harish_activities.recycler_view_acts.CustomerOrderInfo
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:77:9-103
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:71:9-103
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:77:19-100
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:71:19-100
 activity#com.example.bourbon.activities.clement_activities.Store_Registration
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:78:9-86
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:72:9-86
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:78:19-83
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:72:19-83
 activity#com.example.bourbon.activities.harish_activities.recycler_view_acts.CovidStatusInfo
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:79:9-101
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:73:9-101
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:79:19-98
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:73:19-98
 activity#com.example.bourbon.activities.clement_activities.Donation
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:80:9-76
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:74:9-76
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:80:19-73
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:74:19-73
 activity#com.example.bourbon.activities.clement_activities.Volunteer_Registration
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:81:9-90
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:75:9-90
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:81:19-87
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:75:19-87
 activity#com.example.bourbon.activities.clement_activities.User_Registration
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:82:9-85
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:76:9-85
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:82:19-82
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:76:19-82
 activity#com.example.bourbon.activities.barathan_activities.user_data
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:83:9-78
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:77:9-78
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:83:19-75
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:77:19-75
 activity#com.example.bourbon.activities.clement_activities.Startact
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:84:9-76
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:78:9-76
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:84:19-73
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:78:19-73
 activity#com.example.bourbon.activities.clement_activities.YoutubePlay
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:86:9-79
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:80:9-79
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:86:19-76
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:80:19-76
 activity#com.example.bourbon.activities.clement_activities.YoutubeList
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:87:9-79
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:81:9-79
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:87:19-76
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:81:19-76
 activity#com.example.bourbon.activities.clement_activities.Voip
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:88:9-72
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:82:9-72
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:88:19-69
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:82:19-69
 activity#com.example.bourbon.activities.clement_activities.Verifi
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:89:9-74
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:83:9-74
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:89:19-71
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:83:19-71
 activity#com.example.bourbon.activities.clement_activities.Upi_payments
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:90:9-80
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:84:9-80
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:90:19-77
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:84:19-77
 activity#com.example.bourbon.activities.clement_activities.Main2Activity
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:91:9-81
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:85:9-81
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:91:19-78
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:85:19-78
 activity#com.example.bourbon.activities.clement_activities.EmergencyContactInfo
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:92:9-88
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:86:9-88
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:92:19-85
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:86:19-85
 activity#com.example.bourbon.activities.arumugam_activities.MapsActivity
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:93:9-81
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:87:9-81
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:93:19-78
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:87:19-78
 activity#com.example.bourbon.activities.arumugam_activities.HospitalView
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:94:9-81
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:88:9-81
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:94:19-78
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:88:19-78
 activity#com.example.bourbon.activities.arumugam_activities.MapsActivityGeofencing
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:95:9-91
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:89:9-91
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:95:19-88
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:89:19-88
 service#com.example.bourbon.activities.clement_activities.MyFirebaseMessagingService
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:97:9-103:19
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:91:9-97:19
 	android:exported
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:99:13-37
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:93:13-37
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:98:13-85
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:92:13-85
 intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:100:13-102:29
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:94:13-96:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:101:17-78
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:95:17-78
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:101:25-75
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:95:25-75
 receiver#com.example.bourbon.activities.arumugam_activities.GeofenceBroadcastReceiver
-ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:105:9-94
+ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:99:9-94
 	android:name
-		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:105:19-91
+		ADDED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml:99:19-91
 uses-sdk
 INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\CovidHack\CovidHackCamel\app\src\main\AndroidManifest.xml

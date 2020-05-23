@@ -19,7 +19,7 @@ public class ActivityMainBindingImpl extends ActivityMainBinding  {
     }
     // views
     @NonNull
-    private final android.widget.ScrollView mboundView0;
+    private final android.widget.RelativeLayout mboundView0;
     // variables
     // values
     // listeners
@@ -33,7 +33,7 @@ public class ActivityMainBindingImpl extends ActivityMainBinding  {
             , (androidx.recyclerview.widget.RecyclerView) bindings[2]
             , (android.widget.TextView) bindings[1]
             );
-        this.mboundView0 = (android.widget.ScrollView) bindings[0];
+        this.mboundView0 = (android.widget.RelativeLayout) bindings[0];
         this.mboundView0.setTag(null);
         setRootTag(root);
         // listeners

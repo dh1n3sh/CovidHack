@@ -8,12 +8,12 @@
         "source": "C:\\CovidHack\\CovidHackCamel\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\CovidHack\\CovidHackCamel\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_user_data.xml.flat",
-        "source": "C:\\CovidHack\\CovidHackCamel\\app\\src\\main\\res\\layout\\activity_user_data.xml"
-    },
-    {
         "merged": "C:\\CovidHack\\CovidHackCamel\\app\\build\\intermediates\\res\\merged\\debug\\layout_card_news_back.xml.flat",
         "source": "C:\\CovidHack\\CovidHackCamel\\app\\src\\main\\res\\layout\\harish_layouts\\layout\\card_news_back.xml"
+    },
+    {
+        "merged": "C:\\CovidHack\\CovidHackCamel\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_user_data.xml.flat",
+        "source": "C:\\CovidHack\\CovidHackCamel\\app\\src\\main\\res\\layout\\activity_user_data.xml"
     },
     {
         "merged": "C:\\CovidHack\\CovidHackCamel\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_maps_shelter_mapping_arumugam.xml.flat",
