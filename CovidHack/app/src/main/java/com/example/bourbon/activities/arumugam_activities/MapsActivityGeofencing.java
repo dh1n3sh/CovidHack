@@ -105,21 +105,18 @@ public class MapsActivityGeofencing extends FragmentActivity implements OnMapRea
 
                 if(locationResult==null) return;
 
-                flpc.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                            if(location!=null)
-                            {
-                                addingGeofences();
-                                flpc.removeLocationUpdates(locationCallback);
-                            }
-                            else
-                            {
-                                Print print = new Print(MapsActivityGeofencing.this);
-                                print.fprintf("Failed to get your location.");
-                            }
-                    }
-                });
+                Location location = locationResult.getLastLocation();
+
+                if(location!=null)
+                {
+                    addingGeofences();
+                    flpc.removeLocationUpdates(locationCallback);
+                }
+                else
+                {
+                    Print print = new Print(MapsActivityGeofencing.this);
+                    print.fprintf("Failed to get your location.");
+                }
             }
         };
 
@@ -240,7 +237,7 @@ public class MapsActivityGeofencing extends FragmentActivity implements OnMapRea
 
     private void addingGeofences()
     {
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Red-Zones");
+        databaseReference = FirebaseDatabase.getInstance().getReference("/Red-Zones/Kerala");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

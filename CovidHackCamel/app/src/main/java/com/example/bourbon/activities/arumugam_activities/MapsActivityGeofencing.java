@@ -16,6 +16,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
@@ -23,10 +24,13 @@ import android.widget.Toast;
 import com.example.bourbon.R;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingClient;
 import com.google.android.gms.location.GeofencingRequest;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
@@ -55,8 +59,7 @@ import java.util.HashMap;
 import print.Print;
 
 public class MapsActivityGeofencing extends FragmentActivity implements OnMapReadyCallback,
-        GoogleMap.OnMapLongClickListener,
-        GoogleMap.OnMyLocationChangeListener{
+        GoogleMap.OnMapLongClickListener{
 
     private static final String TAG = "MapsActivity";
     private Print print;
@@ -72,6 +75,10 @@ public class MapsActivityGeofencing extends FragmentActivity implements OnMapRea
     private int FINE_LOCATION_ACCESS_REQUEST_CODE = 10001;
     private int BACKGROUND_LOCATION_ACCESS_REQUEST_CODE = 10002;
 
+    private FusedLocationProviderClient flpc;
+    private LocationRequest locationRequest;
+    private LocationCallback locationCallback;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +91,34 @@ public class MapsActivityGeofencing extends FragmentActivity implements OnMapRea
 
         geofencingClient = LocationServices.getGeofencingClient(this);
         geofenceHelper = new GeofenceHelper(this);
+
+        flpc = LocationServices.getFusedLocationProviderClient(this);
+
+        locationRequest = new LocationRequest();
+        locationRequest.setInterval(1000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        locationCallback = new LocationCallback(){
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+
+                if(locationResult==null) return;
+
+                Location location = locationResult.getLastLocation();
+
+                if(location!=null)
+                {
+                    addingGeofences();
+                    flpc.removeLocationUpdates(locationCallback);
+                }
+                else
+                {
+                    Print print = new Print(MapsActivityGeofencing.this);
+                    print.fprintf("Failed to get your location.");
+                }
+            }
+        };
 
     }
 
@@ -100,16 +135,14 @@ public class MapsActivityGeofencing extends FragmentActivity implements OnMapRea
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         enableUserLocation();
-
-        mMap.setOnMyLocationChangeListener(this);
-        mMap.setOnMapLongClickListener(this);
+        //mMap.setOnMapLongClickListener(this); For testing purpose
     }
 
     private void enableUserLocation() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
+            flpc.requestLocationUpdates(locationRequest,locationCallback, Looper.getMainLooper());
         } else {
             //Ask for permission
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
@@ -143,7 +176,7 @@ public class MapsActivityGeofencing extends FragmentActivity implements OnMapRea
         if (requestCode == FINE_LOCATION_ACCESS_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 mMap.setMyLocationEnabled(true);
-                addingGeofences();
+                flpc.requestLocationUpdates(locationRequest,locationCallback,Looper.getMainLooper());
 
             } else {
                 print.fprintf("Location services are essential for this feature.!");
@@ -159,15 +192,15 @@ public class MapsActivityGeofencing extends FragmentActivity implements OnMapRea
         }
     }
 
-    private void PlotAndAddGeofence(LatLng latLng,float radius) {
-        addMarker(latLng);
+    private void PlotAndAddGeofence(LatLng latLng,float radius,String title) {
+        addMarker(latLng,title);
         addCircle(latLng, radius);
-        addGeofence(latLng, radius);
+        addGeofence(latLng, radius,title);
     }
 
-    private void addGeofence(LatLng latLng, float radius) {
+    private void addGeofence(LatLng latLng, float radius,String name) {
 
-        Geofence geofence = geofenceHelper.getGeofence(GEOFENCE_ID, latLng, radius, Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_DWELL | Geofence.GEOFENCE_TRANSITION_EXIT);
+        Geofence geofence = geofenceHelper.getGeofence(name, latLng, radius, Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_DWELL | Geofence.GEOFENCE_TRANSITION_EXIT);
         GeofencingRequest geofencingRequest = geofenceHelper.getGeofencingRequest(geofence);
         PendingIntent pendingIntent = geofenceHelper.getPendingIntent();
 
@@ -187,8 +220,8 @@ public class MapsActivityGeofencing extends FragmentActivity implements OnMapRea
                 });
     }
 
-    private void addMarker(LatLng latLng) {
-        MarkerOptions markerOptions = new MarkerOptions().position(latLng);
+    private void addMarker(LatLng latLng,String title) {
+        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(title);
         mMap.addMarker(markerOptions);
     }
 
@@ -204,7 +237,7 @@ public class MapsActivityGeofencing extends FragmentActivity implements OnMapRea
 
     private void addingGeofences()
     {
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Red-Zones");
+        databaseReference = FirebaseDatabase.getInstance().getReference("/Red-Zones/Rajasthan");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -217,7 +250,7 @@ public class MapsActivityGeofencing extends FragmentActivity implements OnMapRea
                     String[] values = value.split(",");
                     LatLng latlng = new LatLng(Double.parseDouble(values[0]),Double.parseDouble(values[1]));
                     float radius = Float.parseFloat(values[2])*1000;
-                    PlotAndAddGeofence(latlng,radius);
+                    PlotAndAddGeofence(latlng,radius,key);
                     latLngBoundsBuilder.include(latlng);
                 }
 
@@ -229,7 +262,6 @@ public class MapsActivityGeofencing extends FragmentActivity implements OnMapRea
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 print.fprintf("Failed to Connect to server.!");
-                //Toast.makeText(getApplicationContext(),"Failed to Connect to server.!",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -303,17 +335,10 @@ public class MapsActivityGeofencing extends FragmentActivity implements OnMapRea
         }
     }
 
-    @Override
-    public void onMapLongClick(LatLng latLng) {
-        PlotAndAddGeofence(latLng,2000);
-    }
+    //Was implemented for testing purpose
 
     @Override
-    public void onMyLocationChange(Location location) {
-        if(location!=null)
-        {
-            addingGeofences();
-            mMap.setOnMyLocationChangeListener(null);
-        }
+    public void onMapLongClick(LatLng latLng) {
+        PlotAndAddGeofence(latLng,2000,"Custom Geofence");
     }
 }

@@ -1,5 +1,6 @@
 package com.example.bourbon.activities.arumugam_activities;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -44,6 +45,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -194,6 +196,11 @@ public class MapsActivity extends FragmentActivity
                                 mMap.addMarker(m.get(i));
 
                         }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("flpc last location",e.toString());
+                        }
                     });
 
                 }
@@ -271,6 +278,11 @@ public class MapsActivity extends FragmentActivity
                                 }
                             });
                             behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("flpc last location",e.toString());
                         }
                     });
 

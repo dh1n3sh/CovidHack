@@ -7,34 +7,30 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RatingBar;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.bourbon.R;
-import com.example.bourbon.activities.clement_activities.EmergencyContactInfo;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
@@ -44,13 +40,13 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
@@ -60,26 +56,19 @@ import print.Print;
 
 public class MapsActivity extends FragmentActivity
         implements
-        OnMapReadyCallback,
-        GoogleMap.OnMyLocationChangeListener {
+        OnMapReadyCallback{
     private BottomSheetBehavior<View> behavior;
     private GoogleMap mMap;
-    private Location location;
-    private MarkerOptions currmarker;
     private ArrayList<HospitalDetails> results;
-    private Button searchbutton;
     private ArrayList<MarkerOptions> m;
-    private Spinner sp;
-    private static final long MIN_TIME = 400;
-    private static final float MIN_DISTANCE = 1000;
     private int checked;
     private Button hospital;
     private Button pharmacy;
     private LinearLayout hospitaldetailslayout;
     private Print print;
-
-
-
+    private FusedLocationProviderClient flpc;
+    private LocationRequest locationRequest;
+    private LocationCallback locationCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,12 +82,43 @@ public class MapsActivity extends FragmentActivity
         pharmacy = findViewById(R.id.search_pharmacy);
         hospitaldetailslayout = findViewById(R.id.hospital_details_linear);
 
-        hospitaldetailslayout.setVisibility(View.INVISIBLE);
+        hospitaldetailslayout.setVisibility(View.GONE);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        flpc = LocationServices.getFusedLocationProviderClient(this);
+
+        locationRequest = new LocationRequest();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(1000);
+
+        locationCallback = new LocationCallback(){
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+
+                if(locationResult==null) return;
+
+                Location location = locationResult.getLastLocation();
+                if (location != null) {
+                    LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                    CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 15.0f);
+                    mMap.animateCamera(cameraUpdate);
+                    pharmacy.setTextColor(getApplication().getResources().getColor(R.color.black));
+                    pharmacy.setBackground( getApplication().getResources().getDrawable(R.drawable.rounded_button_unselected));
+                    hospital.setTextColor(getApplication().getResources().getColor(R.color.black));
+                    hospital.setBackground( getApplication().getResources().getDrawable(R.drawable.rounded_button_unselected));
+                    flpc.removeLocationUpdates(this);
+                }
+                else
+                {
+                    print.fprintf("Failed to get your location.");
+                }
+            }
+        };
 
         try{
             View bottomSheet = findViewById(R.id.bottom_sheet);
@@ -140,36 +160,48 @@ public class MapsActivity extends FragmentActivity
                 @Override
                 public void run() {
 
-                    location = mMap.getMyLocation();
-                    mMap.clear();
+                    flpc.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
 
-                    if(location==null)
-                        return;
-                    results = ApiQuery.ping(location,place.toLowerCase());
+                            mMap.clear();
 
-                    if(results==null)
-                    {
-                        print.fprintf("No results found. Please try again in few moments");
-                        return;
-                    }
+                            if(location==null)
+                                return;
 
-                    if(results.size()==0) {
-                        print.fprintf("Please try again in few moments");
-                        checked=0;
-                    }
-                    m=new ArrayList();
+                            results = ApiQuery.ping(location,place.toLowerCase());
 
-                    for(int i=0;i<results.size();i++)
-                    {
-                        m.add(new MarkerOptions().position(new LatLng(results.get(i).getLocationlatlng()[0],results.get(i).getLocationlatlng()[1])));
-                        m.get(i).snippet(i+"");
-                    }
+                            if(results==null)
+                            {
+                                print.fprintf("No results found. Please try again in few moments");
+                                return;
+                            }
 
-                    if(m==null)
-                        return;
+                            if(results.size()==0) {
+                                print.fprintf("Please try again in few moments");
+                                checked=0;
+                            }
+                            m=new ArrayList();
 
-                    for(int i=0;i<m.size();i++)
-                        mMap.addMarker(m.get(i));
+                            for(int i=0;i<results.size();i++)
+                            {
+                                m.add(new MarkerOptions().position(new LatLng(results.get(i).getLocationlatlng()[0],results.get(i).getLocationlatlng()[1])));
+                                m.get(i).snippet(i+"");
+                            }
+
+                            if(m==null)
+                                return;
+
+                            for(int i=0;i<m.size();i++)
+                                mMap.addMarker(m.get(i));
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("flpc last location",e.toString());
+                        }
+                    });
 
                 }
             });
@@ -182,7 +214,6 @@ public class MapsActivity extends FragmentActivity
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setOnMyLocationChangeListener(this);
         checkingPermissions();
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -196,55 +227,65 @@ public class MapsActivity extends FragmentActivity
 
                 hospitaldetailslayout.setVisibility(View.VISIBLE);
                 try {
-                    Location l = mMap.getMyLocation();
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(l.getLatitude() + "," + l.getLongitude());
-                    String location = sb.toString();
-
-                    HospitalDetails obj = results.get(Integer.parseInt(marker.getSnippet()));
-                    TextView hospitalname = findViewById(R.id.hospitalname);
-                    TextView address = findViewById(R.id.address);
-                    RatingBar rating = findViewById(R.id.rating);
-                    TextView openinghrs = findViewById(R.id.openinghrs);
-                    Button directionbutton = findViewById(R.id.directions);
-
-                    hospitalname.setText(obj.getHospitalName());
-                    address.setText(obj.getAddress());
-                    try {
-                        rating.setVisibility(View.VISIBLE);
-                        rating.setRating(Float.parseFloat(obj.getRating()));
-                    } catch (Exception e) {
-                        rating.setVisibility(View.GONE);
-                    }
-
-                    if(!obj.getOpeningHours().equals("Not Available")) {
-                        openinghrs.setVisibility(View.VISIBLE);
-                        openinghrs.setText(obj.getOpeningHours());
-                    }
-                    else
-                    {
-                        openinghrs.setVisibility(View.GONE);
-                    }
-                    directionbutton.setOnClickListener(new View.OnClickListener() {
+                    flpc.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
                         @Override
-                        public void onClick(View v) {
-
-                            String direction = "";
+                        public void onSuccess(Location l) {
                             StringBuilder sb = new StringBuilder();
-                            sb.append("https://www.google.com/maps/dir/?api=1");
-                            sb.append("&origin=" + location);
-                            sb.append("&destination=" + obj.getLocationlatlng()[0] + "," + obj.getLocationlatlng()[1]);
+                            sb.append(l.getLatitude() + "," + l.getLongitude());
+                            String location = sb.toString();
 
-                            direction = sb.toString();
+                            HospitalDetails obj = results.get(Integer.parseInt(marker.getSnippet()));
+                            TextView hospitalname = findViewById(R.id.hospitalname);
+                            TextView address = findViewById(R.id.address);
+                            RatingBar rating = findViewById(R.id.rating);
+                            TextView openinghrs = findViewById(R.id.openinghrs);
+                            Button directionbutton = findViewById(R.id.directions);
 
-                            Uri uri = Uri.parse(direction);
+                            hospitalname.setText(obj.getHospitalName());
+                            address.setText(obj.getAddress());
+                            try {
+                                rating.setVisibility(View.VISIBLE);
+                                rating.setRating(Float.parseFloat(obj.getRating()));
+                            } catch (Exception e) {
+                                rating.setVisibility(View.GONE);
+                            }
 
-                            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
+                            if(!obj.getOpeningHours().equals("Not Available")) {
+                                openinghrs.setVisibility(View.VISIBLE);
+                                openinghrs.setText(obj.getOpeningHours());
+                            }
+                            else
+                            {
+                                openinghrs.setVisibility(View.GONE);
+                            }
+                            directionbutton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
+                                    String direction = "";
+                                    StringBuilder sb = new StringBuilder();
+                                    sb.append("https://www.google.com/maps/dir/?api=1");
+                                    sb.append("&origin=" + location);
+                                    sb.append("&destination=" + obj.getLocationlatlng()[0] + "," + obj.getLocationlatlng()[1]);
+
+                                    direction = sb.toString();
+
+                                    Uri uri = Uri.parse(direction);
+
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                    startActivity(intent);
+
+                                }
+                            });
+                            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("flpc last location",e.toString());
                         }
                     });
-                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
                 }
                 catch(Exception e)
                 {
@@ -271,6 +312,7 @@ public class MapsActivity extends FragmentActivity
         else{
             checkLocation();
             mMap.setMyLocationEnabled(true);
+            flpc.requestLocationUpdates(locationRequest,locationCallback, Looper.getMainLooper());
         }
 
         if(!checkPlayServices())
@@ -292,9 +334,9 @@ public class MapsActivity extends FragmentActivity
                     // contacts-related task you need to do.
                     checkLocation();
                     mMap.setMyLocationEnabled(true);
+                    flpc.requestLocationUpdates(locationRequest,locationCallback,Looper.getMainLooper());
                 } else {
                     print.fprintf("Cannot find hospitals/pharmacies without location services");
-                    //Toast.makeText(this,"Cannot provide the location services",Toast.LENGTH_SHORT).show();
                 }
                 return;
             }
@@ -342,6 +384,7 @@ public class MapsActivity extends FragmentActivity
     public void finderOption(View view) {
         if(view == hospital && checked!=1)
         {
+            hospitaldetailslayout.setVisibility(View.GONE);
             checked=1;
             ((Button)view).setTextColor(getApplication().getResources().getColor(R.color.white));
             view.setBackground( getApplication().getResources().getDrawable(R.drawable.rounded_button_selected));
@@ -351,27 +394,13 @@ public class MapsActivity extends FragmentActivity
         }
         else  if(view == pharmacy && checked!=2)
         {
+            hospitaldetailslayout.setVisibility(View.GONE);
             checked=2;
             ((Button)view).setTextColor(getApplication().getResources().getColor(R.color.white));
             view.setBackground( getApplication().getResources().getDrawable(R.drawable.rounded_button_selected));
             hospital.setTextColor(getApplication().getResources().getColor(R.color.black));
             hospital.setBackground( getApplication().getResources().getDrawable(R.drawable.rounded_button_unselected));
             getPlaces("pharmacy");
-        }
-    }
-
-    @Override
-    public void onMyLocationChange(Location location) {
-
-        if (location != null) {
-            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 15.0f);
-            mMap.animateCamera(cameraUpdate);
-            pharmacy.setTextColor(getApplication().getResources().getColor(R.color.black));
-            pharmacy.setBackground( getApplication().getResources().getDrawable(R.drawable.rounded_button_unselected));
-            hospital.setTextColor(getApplication().getResources().getColor(R.color.black));
-            hospital.setBackground( getApplication().getResources().getDrawable(R.drawable.rounded_button_unselected));
-            mMap.setOnMyLocationChangeListener(null);
         }
     }
 
