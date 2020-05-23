@@ -78,7 +78,7 @@
             android:value="true" /> <!-- <activity android:name=".activities.harish_activities.recycler_view_acts.InfectedPeopleInfo" /> -->
         <activity
             android:name="com.example.bourbon.activities.harish_activities.Dashboard"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" >
+            android:theme="@style/myStyle" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <!-- Launcher Denotes that it will be the first launching activity -->
