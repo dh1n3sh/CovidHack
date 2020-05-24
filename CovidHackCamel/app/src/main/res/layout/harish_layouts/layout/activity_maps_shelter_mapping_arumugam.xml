@@ -5,32 +5,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <fragment
-        android:id="@+id/map_shelter_mapping"
+        android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.arumugam_activities.MapsActivityShelterMapping" />
 
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:id="@+id/ShelterLinear"-->
-<!--        android:textAlignment="center"-->
-<!--        >-->
-<!--        <SeekBar-->
-<!--            android:id="@+id/seekBar1"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/ShelterLinear"
+        android:textAlignment="center"
+        >
+        <SeekBar
+            android:id="@+id/seekBar1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
 
-<!--            android:layout_alignParentRight="true"-->
-<!--            />-->
+            android:layout_alignParentRight="true"
+            />
 
 
 
-<!--    </LinearLayout>-->
-<!--    <include layout="@layout/bottom_sheet_shelter" />-->
+    </LinearLayout>
+    <include layout="@layout/bottom_sheet_shelter" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -17,13 +17,13 @@ import java.lang.Override;
 public class Order_Food_ViewBinding implements Unbinder {
   private Order_Food target;
 
-  private View view7f0a00e9;
+  private View view7f0a00eb;
 
-  private View view7f0a0043;
+  private View view7f0a0044;
 
-  private View view7f0a0193;
+  private View view7f0a0199;
 
-  private View view7f0a005c;
+  private View view7f0a005e;
 
   @UiThread
   public Order_Food_ViewBinding(Order_Food target) {
@@ -40,7 +40,7 @@ public class Order_Food_ViewBinding implements Unbinder {
     target.itemQuantity = Utils.findRequiredViewAsType(source, R.id.item_quantity, "field 'itemQuantity'", EditText.class);
     view = Utils.findRequiredView(source, R.id.manuel, "field 'manuel' and method 'onViewClicked'");
     target.manuel = Utils.castView(view, R.id.manuel, "field 'manuel'", Button.class);
-    view7f0a00e9 = view;
+    view7f0a00eb = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -48,7 +48,7 @@ public class Order_Food_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.add_item, "method 'onViewClicked'");
-    view7f0a0043 = view;
+    view7f0a0044 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -56,7 +56,7 @@ public class Order_Food_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.submit_list, "method 'onViewClicked'");
-    view7f0a0193 = view;
+    view7f0a0199 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -64,7 +64,7 @@ public class Order_Food_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.cart, "method 'onViewClicked'");
-    view7f0a005c = view;
+    view7f0a005e = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -85,13 +85,13 @@ public class Order_Food_ViewBinding implements Unbinder {
     target.itemQuantity = null;
     target.manuel = null;
 
-    view7f0a00e9.setOnClickListener(null);
-    view7f0a00e9 = null;
-    view7f0a0043.setOnClickListener(null);
-    view7f0a0043 = null;
-    view7f0a0193.setOnClickListener(null);
-    view7f0a0193 = null;
-    view7f0a005c.setOnClickListener(null);
-    view7f0a005c = null;
+    view7f0a00eb.setOnClickListener(null);
+    view7f0a00eb = null;
+    view7f0a0044.setOnClickListener(null);
+    view7f0a0044 = null;
+    view7f0a0199.setOnClickListener(null);
+    view7f0a0199 = null;
+    view7f0a005e.setOnClickListener(null);
+    view7f0a005e = null;
   }
 }

@@ -59,9 +59,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name="com.example.bourbon.activities.arumugam_activities.MapsActivityShelterMapping"
-            android:label="@string/title_activity_maps_shelter_mapping" />
+        <activity android:name="com.example.bourbon.activities.arumugam_activities.MapsActivityShelterMapping" />
+        <activity android:name="com.example.bourbon.activities.arumugam_activities.MapsActivityLabs" />
         <activity android:name="com.example.bourbon.activities.clement_activities.Customer_Order_Details" />
         <activity android:name="com.example.bourbon.activities.harish_activities.recycler_view_acts.InfectedPeopleInfo" /> <!-- <activity android:name=".activities.harish_activities.Dashboard"> -->
         <!-- &lt;!&ndash;        <activity android:name=".activities.harish_activities.TestDashboard">&ndash;&gt; -->

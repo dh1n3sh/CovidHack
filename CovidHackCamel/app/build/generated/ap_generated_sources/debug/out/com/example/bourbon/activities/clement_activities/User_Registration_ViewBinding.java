@@ -16,7 +16,7 @@ import java.lang.Override;
 public class User_Registration_ViewBinding implements Unbinder {
   private User_Registration target;
 
-  private View view7f0a0143;
+  private View view7f0a0144;
 
   @UiThread
   public User_Registration_ViewBinding(User_Registration target) {
@@ -35,7 +35,7 @@ public class User_Registration_ViewBinding implements Unbinder {
     target.male = Utils.findRequiredViewAsType(source, R.id.male, "field 'male'", RadioButton.class);
     target.female = Utils.findRequiredViewAsType(source, R.id.female, "field 'female'", RadioButton.class);
     view = Utils.findRequiredView(source, R.id.register, "method 'onViewClicked'");
-    view7f0a0143 = view;
+    view7f0a0144 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -58,7 +58,7 @@ public class User_Registration_ViewBinding implements Unbinder {
     target.male = null;
     target.female = null;
 
-    view7f0a0143.setOnClickListener(null);
-    view7f0a0143 = null;
+    view7f0a0144.setOnClickListener(null);
+    view7f0a0144 = null;
   }
 }

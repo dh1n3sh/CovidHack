@@ -16,9 +16,9 @@ import java.lang.Override;
 public class Customer_Order_Details_ViewBinding implements Unbinder {
   private Customer_Order_Details target;
 
-  private View view7f0a0145;
+  private View view7f0a0146;
 
-  private View view7f0a01d4;
+  private View view7f0a01da;
 
   @UiThread
   public Customer_Order_Details_ViewBinding(Customer_Order_Details target) {
@@ -35,7 +35,7 @@ public class Customer_Order_Details_ViewBinding implements Unbinder {
     target.custname = Utils.findRequiredViewAsType(source, R.id.custname, "field 'custname'", TextView.class);
     view = Utils.findRequiredView(source, R.id.rejectorder, "field 'rejectorder' and method 'onViewClicked'");
     target.rejectorder = Utils.castView(view, R.id.rejectorder, "field 'rejectorder'", Button.class);
-    view7f0a0145 = view;
+    view7f0a0146 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -44,7 +44,7 @@ public class Customer_Order_Details_ViewBinding implements Unbinder {
     });
     target.customer = Utils.findRequiredViewAsType(source, R.id.customer, "field 'customer'", TextView.class);
     view = Utils.findRequiredView(source, R.id.viewcart, "method 'onViewClicked'");
-    view7f0a01d4 = view;
+    view7f0a01da = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -66,9 +66,9 @@ public class Customer_Order_Details_ViewBinding implements Unbinder {
     target.rejectorder = null;
     target.customer = null;
 
-    view7f0a0145.setOnClickListener(null);
-    view7f0a0145 = null;
-    view7f0a01d4.setOnClickListener(null);
-    view7f0a01d4 = null;
+    view7f0a0146.setOnClickListener(null);
+    view7f0a0146 = null;
+    view7f0a01da.setOnClickListener(null);
+    view7f0a01da = null;
   }
 }
