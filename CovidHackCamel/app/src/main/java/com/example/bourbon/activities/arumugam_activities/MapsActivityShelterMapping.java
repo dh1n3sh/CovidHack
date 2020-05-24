@@ -92,11 +92,11 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
 
         seekValue = 50;int min = 0;
 
-        //View bottomSheet = findViewById(R.id.bottom_sheet_shelter);
-        //bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        View bottomSheet = findViewById(R.id.bottom_sheet_shelter);
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
         print = new Print(this);
-        //helpMsg = findViewById(R.id.shelter_help);
+        helpMsg = findViewById(R.id.shelter_help);
         flpc = LocationServices.getFusedLocationProviderClient(this);
 
         locationRequest = new LocationRequest();
@@ -128,7 +128,7 @@ public class MapsActivityShelterMapping extends FragmentActivity implements OnMa
         };
 
 
-        //seekbar = findViewById(R.id.seekBar);
+        seekbar = findViewById(R.id.seekBar);
         //seekbar.setMax( (max - min) / step );
         //seekbar.setProgress(seekValue);
 
