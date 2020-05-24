@@ -14,19 +14,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg">
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerHorizontal="true"
+
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="162dp"
                 android:layout_marginTop="24dp"
-                android:paddingBottom="40dp"
-                android:text=""
                 android:fontFamily="@font/exotc350bdbtbold"
+                android:paddingBottom="40dp"
+                android:text="Welcome Smith"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"/>
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
