@@ -86,7 +86,7 @@ public class CovidStatusInfo extends Activity {
 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    JSONObject jsonObject1 = jsonObject.getJSONObject("Kerala");
+                    JSONObject jsonObject1 = jsonObject.getJSONObject("Rajasthan");
                     JSONObject district = jsonObject1.getJSONObject("districtData");
                     int i = 0 ;
                     for(Iterator<String> iter = district.keys(); iter.hasNext();) {
