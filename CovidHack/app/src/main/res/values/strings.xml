@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Covidence</string>
+    <string name="app_name">Covidence Kerala</string>
     <string name="gender_prompt">Choose Gender</string>
     <string-array name="gender_arrays">
         <item>Male</item>
