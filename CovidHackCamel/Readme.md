@@ -1,2 +1,2 @@
 # Covid App for Rajasthan
-Download Apk here: https://drive.google.com/drive/folders/1Y9BfLDZOYwPOWTWGFgetQIksrVQiGQ5d?usp=sharing
+Download Apk here: https://drive.google.com/open?id=1NtbKfdTKb5_odf3JYdCr3-6utESqGF1j
