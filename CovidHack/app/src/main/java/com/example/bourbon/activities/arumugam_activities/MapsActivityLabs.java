@@ -391,7 +391,7 @@ public class MapsActivityLabs extends FragmentActivity implements OnMapReadyCall
                 String direction = "";
                 StringBuilder sb = new StringBuilder();
                 sb.append("https://www.google.com/maps/dir/?api=1");
-                sb.append("&origin=" + mylocation);
+                sb.append("&origin=" + mylocation.getLatitude()+","+mylocation.getLongitude());
                 sb.append("&destination=" + obj.getLocation().getLatitude() + "," + obj.getLocation().getLongitude());
 
                 direction = sb.toString();
