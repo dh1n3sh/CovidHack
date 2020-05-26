@@ -33,7 +33,7 @@ public class Startact extends AppCompatActivity {
 
 
 
-//        startActivity(new Intent(this,Dashboard.class));
+        startActivity(new Intent(this,Dashboard.class));
             mobilenum.setCursorVisible(false);
 
 //        mobile = findViewById(R.id.mobi);
