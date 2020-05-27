@@ -237,7 +237,7 @@ public class MapsActivityGeofencing extends FragmentActivity implements OnMapRea
 
     private void addingGeofences()
     {
-        databaseReference = FirebaseDatabase.getInstance().getReference("/Red-Zones/Kerala");
+        databaseReference = FirebaseDatabase.getInstance().getReference("/Red-Zones/Rajasthan");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

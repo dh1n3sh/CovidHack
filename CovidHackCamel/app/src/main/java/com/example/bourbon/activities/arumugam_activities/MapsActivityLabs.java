@@ -264,21 +264,25 @@ public class MapsActivityLabs extends FragmentActivity implements OnMapReadyCall
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         ArrayList<LatLng> result = null;
+                        ArrayList<String> resultTitle = null;
 
                         try {
 
                             Log.d("datasnapshot",dataSnapshot.getValue().toString());
                             ArrayList<HashMap<String,Double>>jsonArray = (ArrayList<HashMap<String, Double>>) dataSnapshot.getValue();
+                            ArrayList<HashMap<String,String>>jsonArrayTitle = (ArrayList<HashMap<String, String>>) dataSnapshot.getValue();
                             result = new ArrayList<LatLng>();
-
+                            resultTitle = new ArrayList<String>();
                             for (int i = 0; i < jsonArray.size(); i++) {
                                 HashMap<String,Double> jsonObject= jsonArray.get(i);
+                                HashMap<String,String> jsonObjectTitle = jsonArrayTitle.get(i);
                                 result.add(new LatLng(jsonObject.get("lat"),jsonObject.get("lng")));
+                                resultTitle.add(jsonObjectTitle.get("title"));
                             }
 
                             Log.d("result",result.toString());
 
-                            plotlabs(result);
+                            plotlabs(result, resultTitle);
                         }
                         catch(Exception e)
                         {
@@ -298,7 +302,7 @@ public class MapsActivityLabs extends FragmentActivity implements OnMapReadyCall
 
     }
 
-    public void plotlabs(ArrayList<LatLng> lls)
+    public void plotlabs(ArrayList<LatLng> lls, ArrayList<String> resultTitle)
     {
         runOnUiThread(() -> {
 
@@ -310,10 +314,11 @@ public class MapsActivityLabs extends FragmentActivity implements OnMapReadyCall
                 return;
             }
 
-            for(LatLng ll : lls)
+            for(int i=0; i<lls.size(); ++i)
             {
                 MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(ll);
+                markerOptions.position(lls.get(i));
+                markerOptions.title(resultTitle.get(i));
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                 mMap.addMarker(markerOptions);
             }

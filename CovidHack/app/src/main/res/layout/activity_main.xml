@@ -20,8 +20,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
+<<<<<<< HEAD
                 android:paddingBottom="40dp"
                 android:text=""
+=======
+                android:layout_alignParentLeft="true"
+                android:paddingBottom="20dp"
+                android:text="Welcome Smith"
+>>>>>>> 0f2c0a2990f6231d98804912f2cd2a0772aa8d0c
                 android:fontFamily="@font/exotc350bdbtbold"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp"

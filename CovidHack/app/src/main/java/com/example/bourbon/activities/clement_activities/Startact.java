@@ -8,6 +8,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bourbon.R;
+import com.example.bourbon.activities.harish_activities.Dashboard;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
@@ -32,7 +33,7 @@ public class Startact extends AppCompatActivity {
 
 
 
-
+        startActivity(new Intent(this,Dashboard.class));
             mobilenum.setCursorVisible(false);
 
 //        mobile = findViewById(R.id.mobi);
