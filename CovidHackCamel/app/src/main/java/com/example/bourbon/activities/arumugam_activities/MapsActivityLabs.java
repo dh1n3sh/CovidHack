@@ -12,9 +12,14 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.bourbon.R;
 import com.google.android.gms.common.ConnectionResult;
@@ -33,22 +38,28 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import print.Print;
 
-public class MapsActivityLabs extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivityLabs extends FragmentActivity implements OnMapReadyCallback,GoogleMap.OnMarkerClickListener{
 
     private GoogleMap mMap;
     private Print print;
@@ -56,6 +67,12 @@ public class MapsActivityLabs extends FragmentActivity implements OnMapReadyCall
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
     private DatabaseReference databaseReference;
+    private ArrayList<Labs> labsArrayList;
+    private LinearLayout labsLinearLayout;
+    private BottomSheetBehavior<View> behavior;
+    private View bottomsheet;
+    private Marker previousSelectedMarker;
+    private Location mylocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +84,16 @@ public class MapsActivityLabs extends FragmentActivity implements OnMapReadyCall
         mapFragment.getMapAsync(this);
 
         print = new Print(this);
+        labsArrayList = null;
+
+        previousSelectedMarker = null;
+
+
+        labsLinearLayout = findViewById(R.id.labs_details_linear);
+        labsLinearLayout.setVisibility(View.GONE);
+
+        bottomsheet = findViewById(R.id.bottom_sheet_labs);
+        behavior = BottomSheetBehavior.from(bottomsheet);
 
         flpc = LocationServices.getFusedLocationProviderClient(this);
 
@@ -85,6 +112,7 @@ public class MapsActivityLabs extends FragmentActivity implements OnMapReadyCall
 
                 if(location!=null)
                 {
+                    mylocation=location;
                     flpc.removeLocationUpdates(this);
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),13.0f));
                 }
@@ -263,31 +291,19 @@ public class MapsActivityLabs extends FragmentActivity implements OnMapReadyCall
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        ArrayList<LatLng> result = null;
-                        ArrayList<String> resultTitle = null;
+                        ArrayList<HashMap<String,Object>> arrayList = (ArrayList<HashMap<String, Object>>) dataSnapshot.getValue();
+                        Log.d("result",arrayList.toString());
+                        ArrayList<Labs> result = new ArrayList<>();
 
                         try {
-
-                            Log.d("datasnapshot",dataSnapshot.getValue().toString());
-                            ArrayList<HashMap<String,Double>>jsonArray = (ArrayList<HashMap<String, Double>>) dataSnapshot.getValue();
-                            ArrayList<HashMap<String,String>>jsonArrayTitle = (ArrayList<HashMap<String, String>>) dataSnapshot.getValue();
-                            result = new ArrayList<LatLng>();
-                            resultTitle = new ArrayList<String>();
-                            for (int i = 0; i < jsonArray.size(); i++) {
-                                HashMap<String,Double> jsonObject= jsonArray.get(i);
-                                HashMap<String,String> jsonObjectTitle = jsonArrayTitle.get(i);
-                                result.add(new LatLng(jsonObject.get("lat"),jsonObject.get("lng")));
-                                resultTitle.add(jsonObjectTitle.get("title"));
-                            }
-
-                            Log.d("result",result.toString());
-
-                            plotlabs(result, resultTitle);
+                            for (HashMap<String,Object> hashMap : arrayList)
+                                result.add(new Labs(hashMap));
+                            plotlabs(result);
                         }
-                        catch(Exception e)
+                        catch (Exception e)
                         {
-                            result=null;
                             Log.d("jsonerror",e.toString());
+                            print.fprintf("Couldnt't Plot Labs. Please try again later");
                         }
                     }
 
@@ -302,28 +318,89 @@ public class MapsActivityLabs extends FragmentActivity implements OnMapReadyCall
 
     }
 
-    public void plotlabs(ArrayList<LatLng> lls, ArrayList<String> resultTitle)
+    public void plotlabs(ArrayList<Labs> labs)
     {
         runOnUiThread(() -> {
 
             mMap.clear();
 
-            if(lls==null)
+            if(labs==null)
             {
                 print.fprintf("No Labs.");
                 return;
             }
 
-            for(int i=0; i<lls.size(); ++i)
+            labsArrayList = labs;
+
+            int cnt=0;
+
+            for(int i=0; i<labs.size(); ++i)
             {
+                if(mylocation.distanceTo(labs.get(i).getLocation())>100*1000) continue;
+
                 MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(lls.get(i));
-                markerOptions.title(resultTitle.get(i));
-                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                markerOptions.position(new LatLng(labs.get(i).getLocation().getLatitude(),labs.get(i).getLocation().getLongitude()));
+                markerOptions.title(labs.get(i).getName());
+                markerOptions.snippet(""+i);
                 mMap.addMarker(markerOptions);
+                cnt++;
             }
 
-            print.sprintf("plotted "+lls.size()+" labs");
+            if(cnt>0)
+                print.sprintf("plotted "+cnt+" labs inside 100 km radius");
+            else
+                print.fprintf("There are no labs in 100 kilometers radius.");
+
+            mMap.setOnMarkerClickListener(this);
+        });
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+
+        int index = Integer.parseInt(marker.getSnippet());
+
+        if(previousSelectedMarker!=null)
+        {
+            previousSelectedMarker.setIcon(BitmapDescriptorFactory.defaultMarker());
+        }
+
+        previousSelectedMarker = marker;
+        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+
+        fillBottomSheet(labsArrayList.get(index));
+
+        Log.d("markertesting",labsArrayList.get(index).toString());
+        return true;
+    }
+
+    private void fillBottomSheet(Labs obj){
+
+        labsLinearLayout.setVisibility(View.VISIBLE);
+
+        TextView name = (TextView) findViewById(R.id.labsname);
+        TextView address = (TextView) findViewById(R.id.labsaddress);
+        Button directions = (Button)findViewById(R.id.labsdirections);
+
+        name.setText(obj.getName());
+        address.setText(obj.getAddress());
+
+        directions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String direction = "";
+                StringBuilder sb = new StringBuilder();
+                sb.append("https://www.google.com/maps/dir/?api=1");
+                sb.append("&origin=" + mylocation.getLatitude()+","+mylocation.getLongitude());
+                sb.append("&destination=" + obj.getLocation().getLatitude() + "," + obj.getLocation().getLongitude());
+
+                direction = sb.toString();
+
+                Uri uri = Uri.parse(direction);
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
         });
     }
 
