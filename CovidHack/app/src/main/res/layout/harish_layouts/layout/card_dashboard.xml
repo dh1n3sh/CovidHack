@@ -12,18 +12,24 @@
     </data>
 
 <!--    <androidx.cardview.widget.CardView-->
-<!--        android:id="@+id/dashboardCard"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/dashboardCard1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="200dp"-->
 <!--        android:layout_margin="8dp"-->
 <!--        app:cardCornerRadius="17dp">-->
 
         <RelativeLayout
             android:id="@+id/dashboardCard"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@drawable/card_dashboard_img">
+            >
 
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/card_dashboard_img"/>
             <ImageView
                 android:id="@+id/cardImage"
                 android:layout_width="40dp"
@@ -39,8 +45,9 @@
                 android:layout_below="@+id/cardImage"
                 android:layout_centerHorizontal="true"
                 android:textColor="#000000"
-                android:textSize="18sp"
-                android:layout_marginTop="50dp"
+                android:textSize="24sp"
+                android:layout_marginTop="28dp"
+
                 android:text="Smith"
                 android:fontFamily="@font/exotc350bdbtbold"
                 android:textStyle="bold" />

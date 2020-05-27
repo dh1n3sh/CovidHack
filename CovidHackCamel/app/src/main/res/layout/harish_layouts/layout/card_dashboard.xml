@@ -45,7 +45,9 @@
                 android:layout_below="@+id/cardImage"
                 android:layout_centerHorizontal="true"
                 android:textColor="#000000"
-                android:textSize="18sp"
+                android:textSize="24sp"
+                android:layout_marginTop="28dp"
+
                 android:text="Smith"
                 android:fontFamily="@font/exotc350bdbtbold"
                 android:textStyle="bold" />

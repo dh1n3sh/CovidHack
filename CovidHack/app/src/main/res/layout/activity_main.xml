@@ -10,24 +10,18 @@
 
     </data>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:background="@drawable/bg"
-        android:layout_height="match_parent"
-        tools:context=".activities.harish_activities.Dashboard">
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/bg">
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
-
-                android:paddingBottom="20dp"
-                android:text="Welcome Smith"
+                android:paddingBottom="40dp"
+                android:text=""
                 android:fontFamily="@font/exotc350bdbtbold"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp"
@@ -43,18 +37,8 @@
                 android:layout_centerInParent="true"
                 />
 
-<!--            <TextView-->
-<!--                android:id="@+id/newsLabel"-->
-<!--                android:layout_below="@+id/recyclerView"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="News Headlines:"-->
-<!--                android:textStyle="bold"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="18sp"-->
-<!--                />-->
 
 
         </RelativeLayout>
-    </ScrollView>
+
 </layout>
