@@ -82,6 +82,13 @@ public class MapsActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_arumugam);
 
+        //testing
+
+        Intent intent = new Intent(this,MapsModule.class);
+        startActivity(intent);
+
+        //testing done
+
         //setting radio
         print = new Print(getApplicationContext());
         checked=0;

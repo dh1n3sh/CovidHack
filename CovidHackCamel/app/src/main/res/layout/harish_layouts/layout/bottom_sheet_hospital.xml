@@ -138,7 +138,7 @@
               />
 
             <TextView
-                android:id="@+id/address"
+                android:id="@+id/hospitaladdress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -151,7 +151,7 @@
 
 
             <RatingBar
-                android:id="@+id/rating"
+                android:id="@+id/hospitlrating"
                 style="?android:attr/ratingBarStyleIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
            />
 
         <TextView
-                android:id="@+id/openinghrs"
+                android:id="@+id/hospitalopeninghrs"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
 
@@ -184,7 +184,7 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/directions"
+                android:id="@+id/hospitaldirections"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
 

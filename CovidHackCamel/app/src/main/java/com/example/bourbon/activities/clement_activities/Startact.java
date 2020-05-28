@@ -8,6 +8,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bourbon.R;
+import com.example.bourbon.activities.harish_activities.Dashboard;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
@@ -30,7 +31,10 @@ public class Startact extends AppCompatActivity {
         setContentView(R.layout.activity_mobile_main);
         ButterKnife.bind(this);
 
-
+        // testing purpose
+        Intent intent = new Intent(this, Dashboard.class);
+        startActivity(intent);
+        // testing done
 
 
             mobilenum.setCursorVisible(false);

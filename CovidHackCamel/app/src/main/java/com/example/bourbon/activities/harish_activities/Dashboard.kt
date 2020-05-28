@@ -117,7 +117,7 @@ class Dashboard : Activity() {
 
     private fun fetchProducts() {
         val act=ActivityNames(Transition(this), Print(this),this)
-        for(i in 0..14){
+        for(i in 0..11){
 
             val c= DashboardCards(act.namesArr[i],act.drawableArr[i],act.arr[i],0)
 
@@ -125,8 +125,8 @@ class Dashboard : Activity() {
             adapter.notifyItemInserted(i)
         }
 
-        products.add(DashboardCards(act.namesArr[15],act.drawableArr[15],act.arr[15],1))
-        adapter.notifyItemInserted(15)
+        products.add(DashboardCards(act.namesArr[12],act.drawableArr[12],act.arr[12],1))
+        adapter.notifyItemInserted(12)
     }
 
     private fun configFeaturesRecyclerView() {

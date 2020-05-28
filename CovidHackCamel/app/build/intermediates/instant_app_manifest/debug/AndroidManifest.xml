@@ -45,6 +45,7 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
 
         <!--
@@ -60,8 +61,10 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.example.bourbon.activities.arumugam_activities.MapsActivityShelterMapping"
-            android:label="@string/title_activity_maps_shelter_mapping" />
+            android:name="com.example.bourbon.activities.arumugam_activities.MapsModule"
+            android:label="@string/title_activity_maps_module" />
+        <activity android:name="com.example.bourbon.activities.arumugam_activities.MapsActivityShelterMapping" />
+        <activity android:name="com.example.bourbon.activities.arumugam_activities.MapsActivityLabs" />
         <activity android:name="com.example.bourbon.activities.clement_activities.Customer_Order_Details" />
         <activity android:name="com.example.bourbon.activities.harish_activities.recycler_view_acts.InfectedPeopleInfo" /> <!-- <activity android:name=".activities.harish_activities.Dashboard"> -->
         <!-- &lt;!&ndash;        <activity android:name=".activities.harish_activities.TestDashboard">&ndash;&gt; -->
@@ -72,14 +75,15 @@
         <activity
             android:name="com.example.bourbon.activities.harish_activities.Dashboard"
             android:theme="@style/myStyle" >
+        </activity>
+        <activity android:name="com.example.bourbon.activities.harish_activities.PersonLocAct" />
+        <activity android:name="com.example.bourbon.activities.clement_activities.Splash_Screen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <!-- Launcher Denotes that it will be the first launching activity -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.bourbon.activities.harish_activities.PersonLocAct" />
-        <activity android:name="com.example.bourbon.activities.clement_activities.Splash_Screen" />
         <activity android:name="com.example.bourbon.activities.clement_activities.Order_Details" />
         <activity android:name="com.example.bourbon.activities.harish_activities.GraphDaily" />
         <activity android:name="com.example.bourbon.activities.clement_activities.Order_Food" />
