@@ -14,15 +14,15 @@ import com.example.bourbon.activities.harish_activities.recycler_view_acts.Custo
 import com.example.bourbon.activities.harish_activities.recycler_view_acts.InfectedPeopleInfo
 import com.google.firebase.auth.FirebaseAuth
 import frame_transition.Transition
+import com.example.bourbon.activities.arumugam_activities.MapsModule
 
 import print.Print
 
 class ActivityNames(private val transition: Transition, val p:Print,val ctx:Context) {
 
-    val arr= arrayOf(MapsActivity::class.java,
+    val arr= arrayOf(MapsModule::class.java,
     Upi_payments::class.java,
     CovidStatusInfo::class.java,
-    MapsActivityGeofencing::class.java,
 
     YoutubeList::class.java,
     EmergencyContactInfo::class.java,
@@ -34,16 +34,13 @@ class ActivityNames(private val transition: Transition, val p:Print,val ctx:Cont
             InfectedPeopleInfo::class.java,
             PersonLocAct::class.java,
 
-            MapsActivityShelterMapping::class.java,
-            MapsActivityLabs::class.java,
             E_Pass::class.java,
             Startact::class.java)
 
     val namesArr=arrayOf(
-            "Hospital",
+            "Map Service",
             "PM Fund",
             "Stats",
-            "Red Zone",
 
             "Courses",
             "Toll Free",
@@ -55,17 +52,14 @@ class ActivityNames(private val transition: Transition, val p:Print,val ctx:Cont
             "Infected Loc",
             "My Loc",
 
-            "Shelter",
-            "Labs",
             "E-Pass",
             "Log-Out"
     )
 
     val drawableArr= intArrayOf(
-            R.drawable.hospital,
+            R.drawable.map,
             R.drawable.loan,
             R.drawable.microscope,
-            R.drawable.map,
 
             R.drawable.course,
             R.drawable.call,
@@ -76,9 +70,6 @@ class ActivityNames(private val transition: Transition, val p:Print,val ctx:Cont
             R.drawable.donation,
             R.drawable.infloc,
             R.drawable.myloc,
-
-            R.drawable.store,
-            R.drawable.microscope,
             R.drawable.pass,
             R.drawable.logout
     )

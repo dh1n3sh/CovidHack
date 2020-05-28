@@ -15,8 +15,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-
-
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
@@ -40,8 +38,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".activities.arumugam_activities.MapsModule"
+            android:label="@string/title_activity_maps_module"></activity>
+        <activity
             android:name=".activities.arumugam_activities.MapsActivityLabs"
-            android:label="@string/title_activity_maps_labs"></activity>
+            android:label="@string/title_activity_maps_labs" />
         <activity
             android:name=".activities.arumugam_activities.MapsActivityShelterMapping"
             android:label="@string/title_activity_maps_shelter_mapping" />
@@ -54,12 +55,9 @@
             android:value="true" /> <!-- <activity android:name=".activities.harish_activities.recycler_view_acts.InfectedPeopleInfo" /> -->
         <activity
             android:name=".activities.harish_activities.Dashboard"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity android:name=".activities.harish_activities.PersonLocAct" />
-        <activity android:name=".activities.clement_activities.Splash_Screen" >
-
+        <activity android:name=".activities.clement_activities.Splash_Screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <!-- Launcher Denotes that it will be the first launching activity -->
