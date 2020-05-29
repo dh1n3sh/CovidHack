@@ -782,12 +782,11 @@ public class MapsModule extends FragmentActivity implements OnMapReadyCallback {
                 {
                     mylocation=location;
                     flpc.removeLocationUpdates(this);
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),13.0f));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),12.0f));
+                    fetchlabs();
                 }
             }
         };
-
-        fetchlabs();
 
         checkingPermissions();
     }
