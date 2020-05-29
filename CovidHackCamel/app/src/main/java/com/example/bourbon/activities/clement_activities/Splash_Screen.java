@@ -40,7 +40,7 @@ public class Splash_Screen extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 msg = "Failed";
                             }
-//                        Toast.makeText(Startact.this,msg, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(Splash_Screen.this,msg, Toast.LENGTH_SHORT).show();
                         });
 
 
@@ -59,10 +59,12 @@ public class Splash_Screen extends AppCompatActivity {
                             try {
                                 if (snapshot.child("users").hasChild(user.getUid())) {
                                     // run some code
+//                                    Toast.makeText(Splash_Screen.this,"Success1", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(Splash_Screen.this, Dashboard.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                 } else {
+//                                    Toast.makeText(Splash_Screen.this,"Success1", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(Splash_Screen.this, User_Registration.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
@@ -79,6 +81,7 @@ public class Splash_Screen extends AppCompatActivity {
                     });
 
                 }else{
+//                    Toast.makeText(Splash_Screen.this,"Success1", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Splash_Screen.this, Startact.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);

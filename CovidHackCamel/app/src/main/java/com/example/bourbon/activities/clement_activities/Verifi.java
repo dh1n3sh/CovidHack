@@ -160,7 +160,7 @@ public class Verifi extends AppCompatActivity {
 
                             String message = "Somthing is wrong, we will fix it soon...";
                             Print p = new Print(Verifi.this);
-                            p.fprintf("Verification Failed");
+                            p.fprintf(task.getException().getMessage());
 
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 message = "Invalid code entered...";
