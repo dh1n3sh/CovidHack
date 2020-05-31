@@ -17,6 +17,6 @@ public class E_Pass extends AppCompatActivity {
         WebView mywebview = (WebView) findViewById(R.id.webView);
         mywebview.getSettings().setJavaScriptEnabled(true);
         mywebview.setWebViewClient(new WebViewClient());
-        mywebview.loadUrl("https://pass.bsafe.kerala.gov.in/");
+        mywebview.loadUrl("https://epass.rajasthan.gov.in/");
     }
 }
